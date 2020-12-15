@@ -10,6 +10,11 @@ import { SavestateDetailsComponent } from './pages/savestate-details/savestate-d
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { SavestateSearchResultComponent } from './shared/components/savestate-search-result/savestate-search-result.component';
 
+import { AppRoutingModule } from './app-routing.module';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +27,10 @@ import { SavestateSearchResultComponent } from './shared/components/savestate-se
     SavestateSearchResultComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
