@@ -1,1 +1,196 @@
-<p>search works!</p>
+<div class="search-container">
+  <div class="search-filters">
+    <br />
+    <mat-form-field class="dropdown">
+      <mat-label>Character</mat-label>
+      <mat-select [(value)]="character">
+        <mat-option value="Fox">
+          <img class="stock-icon" src="../../assets/Fo_N.png" />Fox
+        </mat-option>
+        <mat-option value="Falco">
+          <img class="stock-icon" src="../../assets/Fa_N.png" />Falco
+        </mat-option>
+        <mat-option value="Marth">
+          <img class="stock-icon" src="../../assets/Mt_N.png" />Marth
+        </mat-option>
+        <mat-option value="Jigglypuff">
+          <img class="stock-icon" src="../../assets/Jp_N.png" />Jigglypuff
+        </mat-option>
+        <mat-option value="Sheik">
+          <img class="stock-icon" src="../../assets/Sh_N.png" />Sheik
+        </mat-option>
+        <mat-option value="Captain Falcon">
+          <img class="stock-icon" src="../../assets/Cf_N.png" />Captain Falcon
+        </mat-option>
+        <mat-option value="Peach">
+          <img class="stock-icon" src="../../assets/Pe_N.png" />Peach
+        </mat-option>
+        <mat-option value="Ice Climbers">
+          <img class="stock-icon" src="../../assets/Ic_N.png" />Ice Climbers
+        </mat-option>
+        <mat-option value="Pikachu">
+          <img class="stock-icon" src="../../assets/Pk_N.png" />Pikachu
+        </mat-option>
+        <mat-option value="Samus">
+          <img class="stock-icon" src="../../assets/Sa_N.png" />Samus
+        </mat-option>
+        <mat-option value="Dr. Mario">
+          <img class="stock-icon" src="../../assets/Dm_N.png" />Dr. Mario
+        </mat-option>
+        <mat-option value="Yoshi">
+          <img class="stock-icon" src="../../assets/Yo_N.png" />Yoshi
+        </mat-option>
+        <mat-option value="Luigi">
+          <img class="stock-icon" src="../../assets/Lu_N.png" />Luigi
+        </mat-option>
+        <mat-option value="Ganondorf">
+          <img class="stock-icon" src="../../assets/Ga_N.png" />Ganondorf
+        </mat-option>
+        <mat-option value="Mario">
+          <img class="stock-icon" src="../../assets/Ma_N.png" />Mario
+        </mat-option>
+        <mat-option value="Young Link">
+          <img class="stock-icon" src="../../assets/Yl_N.png" />Young Link
+        </mat-option>
+        <mat-option value="Donkey Kong">
+          <img class="stock-icon" src="../../assets/Dk_N.png" />Donkey Kong
+        </mat-option>
+        <mat-option value="Link">
+          <img class="stock-icon" src="../../assets/Li_N.png" />Link
+        </mat-option>
+        <mat-option value="Game & Watch">
+          <img class="stock-icon" src="../../assets/Gw_N.png" />Game & Watch
+        </mat-option>
+        <mat-option value="Roy">
+          <img class="stock-icon" src="../../assets/Ro_N.png" />Roy
+        </mat-option>
+        <mat-option value="Mewtwo">
+          <img class="stock-icon" src="../../assets/Me_N.png" />Mewtwo
+        </mat-option>
+        <mat-option value="Ness">
+          <img class="stock-icon" src="../../assets/Ne_N.png" />Ness
+        </mat-option>
+        <mat-option value="Pichu">
+          <img class="stock-icon" src="../../assets/Pi_N.png" />Pichu
+        </mat-option>
+        <mat-option value="Zelda">
+          <img class="stock-icon" src="../../assets/Ze_N.png" />Zelda
+        </mat-option>
+        <mat-option value="Kirby">
+          <img class="stock-icon" src="../../assets/Ki_N.png" />Kirby
+        </mat-option>
+        <mat-option value="Bowser">
+          <img class="stock-icon" src="../../assets/Bo_N.png" />Bowser
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="dropdown">
+      <mat-label>Opponent</mat-label>
+      <mat-select [(value)]="opponent">
+        <mat-option value="Any">Any</mat-option>
+        <mat-option value="Fox">
+          <img class="stock-icon" src="../../assets/Fo_N.png" />Fox
+        </mat-option>
+        <mat-option value="Falco">
+          <img class="stock-icon" src="../../assets/Fa_N.png" />Falco
+        </mat-option>
+        <mat-option value="Marth">
+          <img class="stock-icon" src="../../assets/Mt_N.png" />Marth
+        </mat-option>
+        <mat-option value="Jigglypuff">
+          <img class="stock-icon" src="../../assets/Jp_N.png" />Jigglypuff
+        </mat-option>
+        <mat-option value="Sheik">
+          <img class="stock-icon" src="../../assets/Sh_N.png" />Sheik
+        </mat-option>
+        <mat-option value="Captain Falcon">
+          <img class="stock-icon" src="../../assets/Cf_N.png" />Captain Falcon
+        </mat-option>
+        <mat-option value="Peach">
+          <img class="stock-icon" src="../../assets/Pe_N.png" />Peach
+        </mat-option>
+        <mat-option value="Ice Climbers">
+          <img class="stock-icon" src="../../assets/Ic_N.png" />Ice Climbers
+        </mat-option>
+        <mat-option value="Pikachu">
+          <img class="stock-icon" src="../../assets/Pk_N.png" />Pikachu
+        </mat-option>
+        <mat-option value="Samus">
+          <img class="stock-icon" src="../../assets/Sa_N.png" />Samus
+        </mat-option>
+        <mat-option value="Dr. Mario">
+          <img class="stock-icon" src="../../assets/Dm_N.png" />Dr. Mario
+        </mat-option>
+        <mat-option value="Yoshi">
+          <img class="stock-icon" src="../../assets/Yo_N.png" />Yoshi
+        </mat-option>
+        <mat-option value="Luigi">
+          <img class="stock-icon" src="../../assets/Lu_N.png" />Luigi
+        </mat-option>
+        <mat-option value="Ganondorf">
+          <img class="stock-icon" src="../../assets/Ga_N.png" />Ganondorf
+        </mat-option>
+        <mat-option value="Mario">
+          <img class="stock-icon" src="../../assets/Ma_N.png" />Mario
+        </mat-option>
+        <mat-option value="Young Link">
+          <img class="stock-icon" src="../../assets/Yl_N.png" />Young Link
+        </mat-option>
+        <mat-option value="Donkey Kong">
+          <img class="stock-icon" src="../../assets/Dk_N.png" />Donkey Kong
+        </mat-option>
+        <mat-option value="Link">
+          <img class="stock-icon" src="../../assets/Li_N.png" />Link
+        </mat-option>
+        <mat-option value="Game & Watch">
+          <img class="stock-icon" src="../../assets/Gw_N.png" />Game & Watch
+        </mat-option>
+        <mat-option value="Roy">
+          <img class="stock-icon" src="../../assets/Ro_N.png" />Roy
+        </mat-option>
+        <mat-option value="Mewtwo">
+          <img class="stock-icon" src="../../assets/Me_N.png" />Mewtwo
+        </mat-option>
+        <mat-option value="Ness">
+          <img class="stock-icon" src="../../assets/Ne_N.png" />Ness
+        </mat-option>
+        <mat-option value="Pichu">
+          <img class="stock-icon" src="../../assets/Pi_N.png" />Pichu
+        </mat-option>
+        <mat-option value="Zelda">
+          <img class="stock-icon" src="../../assets/Ze_N.png" />Zelda
+        </mat-option>
+        <mat-option value="Kirby">
+          <img class="stock-icon" src="../../assets/Ki_N.png" />Kirby
+        </mat-option>
+        <mat-option value="Bowser">
+          <img class="stock-icon" src="../../assets/Bo_N.png" />Bowser
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="dropdown">
+      <mat-label>Stage</mat-label>
+      <mat-select [(value)]="stage">
+        <mat-option value="Any">Any</mat-option>
+        <mat-option value="Battlefield">Battlefield</mat-option>
+        <mat-option value="Dreamland">Dreamland</mat-option>
+        <mat-option value="Final Destination">Final Destination</mat-option>
+        <mat-option value="Fountain of Dreams">Fountain of Dreams</mat-option>
+        <mat-option value="Pokemon Stadium">Pokemon Stadium</mat-option>
+        <mat-option value="Battlefield">Yoshi's Island</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="last-dropdown">
+      <mat-label>Training Type</mat-label>
+      <mat-select [formControl]="training_types" multiple>
+        <mat-option *ngFor="let type of training_type_list" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button color="accent" (click)="search()">
+      <mat-icon color="white">search</mat-icon>
+    </button>
+  </div>
+  <div class="table-container">
+
+  </div>
+</div>

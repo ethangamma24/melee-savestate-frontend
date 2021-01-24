@@ -1,0 +1,37 @@
+<br />
+<br />
+<div class="registration-card">
+  <mat-card>
+    <mat-card-title>
+      Register
+    </mat-card-title>
+    <mat-card-content>
+      <div [formGroup]="registration_form">
+        <mat-form-field>
+          <input matNativeControl placeholder="Full Name" formControlName="name">
+          <mat-error *ngIf="registration_form.controls.name.invalid">{{ getNameErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matNativeControl placeholder="Username" formControlName="username">
+          <mat-error *ngIf="registration_form.controls.username.invalid">{{ getUsernameErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+          <mat-error *ngIf="registration_form.controls.email.invalid">{{ getEmailErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <input matNativeControl type="password" placeholder="Password" formControlName="password" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="registration_form.controls.password.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matNativeControl type="password" placeholder="Confirm Password" formControlName="confirm_password" [errorStateMatcher]="matcher">
+          <mat-error *ngIf="registration_form.controls.confirm_password.invalid">{{ getConfirmationPasswordErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="submit()">CREATE ACCOUNT</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
