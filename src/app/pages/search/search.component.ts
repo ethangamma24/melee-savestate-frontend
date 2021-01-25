@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatSort, MatTableDataSource, MatPaginator, PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-search',
@@ -8,9 +9,9 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
 
-  character = "";
-  opponent = "Any";
-  stage = "Any";
+  character_filter = "";
+  opponent_filter = "Any";
+  stage_filter = "Any";
   training_types = new FormControl();
   training_type_list: string[] = [
     'Punish',

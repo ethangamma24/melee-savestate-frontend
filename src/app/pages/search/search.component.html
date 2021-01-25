@@ -3,7 +3,7 @@
     <br />
     <mat-form-field class="dropdown">
       <mat-label>Character</mat-label>
-      <mat-select [(value)]="character">
+      <mat-select [(value)]="character_filter">
         <mat-option value="Fox">
           <img class="stock-icon" src="../../assets/Fo_N.png" />Fox
         </mat-option>
@@ -86,7 +86,7 @@
     </mat-form-field>
     <mat-form-field class="dropdown">
       <mat-label>Opponent</mat-label>
-      <mat-select [(value)]="opponent">
+      <mat-select [(value)]="opponent_filter">
         <mat-option value="Any">Any</mat-option>
         <mat-option value="Fox">
           <img class="stock-icon" src="../../assets/Fo_N.png" />Fox
@@ -170,7 +170,7 @@
     </mat-form-field>
     <mat-form-field class="dropdown">
       <mat-label>Stage</mat-label>
-      <mat-select [(value)]="stage">
+      <mat-select [(value)]="stage_filter">
         <mat-option value="Any">Any</mat-option>
         <mat-option value="Battlefield">Battlefield</mat-option>
         <mat-option value="Dreamland">Dreamland</mat-option>
