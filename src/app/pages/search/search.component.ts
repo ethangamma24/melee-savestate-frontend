@@ -1,6 +1,9 @@
+import { DataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatSort, MatTableDataSource, MatPaginator, PageEvent } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -23,10 +26,24 @@ export class SearchComponent implements OnInit {
     'Attack on Shield',
     'Defense'
   ];
+  // columns: any = {
+  //   'training_name',
+  //   'character',
+  //   'opponent',
+  //   'stage',
+  //   'training_type',
+  //   'downloads'
+  // }
+  //
+  // data_source = [
+  //   { training_name: 'Fox Stomp Techchase at 50%', character: 'Cf', opponent: 'Fo', stage: 'FD', training_type: 'Techchase', downloads: 178 },
+  //   { training_name: 'Fox Edgeguard', character: 'Cf', opponent: 'Fo', stage: 'Bf', training_type: 'Edgeguard', downloads: 349 },
+  // ];
 
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
