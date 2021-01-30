@@ -190,7 +190,58 @@
       <mat-icon color="white">search</mat-icon>
     </button>
   </div>
-  <div class="table-container">
-    
-  </div>
 </div>
+<div class="table-container">
+    <div style="display: inline-block; width: 80%">
+      <div style="text-align: left">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
+        </mat-form-field>
+      </div>
+      <mat-table
+        [dataSource]="data_source"
+        matSort
+        class="mat-elevation-z8"
+        matSortActive="downloads"
+        matSortDirection="desc"
+        matSortDisableClear="true"
+      >
+        <ng-container matColumnDef="training_name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.training_name }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="character">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Character</mat-header-cell>
+          <mat-cell *matCellDef="let row"><img class="stock-icon" src='../../assets/{{ row.character }}_N.png'></mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="opponent">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Opponent</mat-header-cell>
+          <mat-cell *matCellDef="let row"><img class="stock-icon" src='../../assets/{{ row.opponent }}_N.png'></mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="stage">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Stage</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.stage }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="training_type">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.training_type }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="downloads">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Downloads</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.downloads }}</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columns; stick: false"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: columns"
+          mat-Ripple
+          class="savestate-row"
+        ></mat-row>
+        <mat-paginator
+          [length]="length"
+          [pageSize]="page_size"
+          [pageSizeOptions]="page_size_options">
+        </mat-paginator>
+      </mat-table>
+    </div>
+  </div>

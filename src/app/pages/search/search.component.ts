@@ -1,16 +1,25 @@
 import { DataSource } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+
 import { Observable } from 'rxjs';
+
+import * as characters from '../../shared/characters.json';
 
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.scss']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements AfterViewInit {
+
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   character_filter = "";
   opponent_filter = "Any";
@@ -26,24 +35,51 @@ export class SearchComponent implements OnInit {
     'Attack on Shield',
     'Defense'
   ];
-  // columns: any = {
-  //   'training_name',
-  //   'character',
-  //   'opponent',
-  //   'stage',
-  //   'training_type',
-  //   'downloads'
-  // }
-  //
-  // data_source = [
-  //   { training_name: 'Fox Stomp Techchase at 50%', character: 'Cf', opponent: 'Fo', stage: 'FD', training_type: 'Techchase', downloads: 178 },
-  //   { training_name: 'Fox Edgeguard', character: 'Cf', opponent: 'Fo', stage: 'Bf', training_type: 'Edgeguard', downloads: 349 },
-  // ];
+
+  data_source = new MatTableDataSource();
+  columns: any = [
+    'training_name',
+    'character',
+    'opponent',
+    'stage',
+    'training_type',
+    'downloads'
+  ]
+  length: any;
+  page_size = 25;
+  page_size_options: number[] = [10, 25, 50];
+  page_event: PageEvent;
+
+  temp_data_source = [
+    { training_name: 'Fox Stomp Techchase at 50%', character: 'Cf', opponent: 'Fo', stage: 'fd', training_type: 'Techchase', downloads: 178 },
+    { training_name: 'Fox Edgeguard', character: 'Cf', opponent: 'Fo', stage: 'bf', training_type: 'Edgeguard', downloads: 349 },
+  ];
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.data_source.data = this.temp_data_source;
+    setTimeout(() => {
+      console.log(characters);
+      console.log(this.sort);
+      this.length = 2;
+      this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+      this.length = this.temp_data_source.length;
+      this.data_source.paginator = this.paginator;
+      this.data_source.sort = this.sort;
+      console.log(this.data_source.sort)
+      this.data_source.sort.direction = 'desc';
+      this.data_source.sort.active = 'downloads';
+    }, 10);
 
+  }
+
+  applyFilter(filter_value: string) {
+    this.data_source.filter = filter_value.trim().toLowerCase();
+
+    if(this.data_source.paginator) {
+      this.data_source.paginator.firstPage();
+    }
   }
 
 }

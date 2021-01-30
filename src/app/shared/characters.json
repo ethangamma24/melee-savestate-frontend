@@ -1,0 +1,132 @@
+{
+  "Fox": {
+    "name": "Fox",
+    "id": "Fo",
+    "icon": "../../assets/Fo_N.png"
+  },
+  "Falco": {
+    "name": "Falco",
+    "id": "Fa",
+    "icon": "../../assets/Fa_N.png"
+  },
+  "Marth": {
+    "name": "Marth",
+    "id": "Mt",
+    "icon": "../../assets/Mt_N.png"
+  },
+  "Jigglypuff": {
+    "name": "Jigglypuff",
+    "id": "Jp",
+    "icon": "../../assets/Jp_N.png"
+  },
+  "Sheik": {
+    "name": "Sheik",
+    "id": "Sh",
+    "icon": "../../assets/Sh_N.png"
+  },
+  "Captain Falcon": {
+    "name": "Captain Falcon",
+    "id": "Cf",
+    "icon": "../../assets/Cf_N.png"
+  },
+  "Peach": {
+    "name": "Peach",
+    "id": "Pe",
+    "icon": "../../assets/Pe_N.png"
+  },
+  "Ice Climbers": {
+    "name": "Ice Climbers",
+    "id": "Ic",
+    "icon": "../../assets/Ic_N.png"
+  },
+  "Pikachu": {
+    "name": "Pikachu",
+    "id": "Pk",
+    "icon": "../../assets/Pk_N.png"
+  },
+  "Samus": {
+    "name": "Samus",
+    "id": "Sa",
+    "icon": "../../assets/Sa_N.png"
+  },
+  "Dr. Mario": {
+    "name": "Dr. Mario",
+    "id": "Dm",
+    "icon": "../../assets/Dm_N.png"
+  },
+  "Yoshi": {
+    "name": "Yoshi",
+    "id": "Yo",
+    "icon": "../../assets/Yo_N.png"
+  },
+  "Luigi": {
+    "name": "Luigi",
+    "id": "Lu",
+    "icon": "../../assets/Lu_N.png"
+  },
+  "Ganondorf": {
+    "name": "Ganondorf",
+    "id": "Ga",
+    "icon": "../../assets/Ga_N.png"
+  },
+  "Mario": {
+    "name": "Mario",
+    "id": "Ma",
+    "icon": "../../assets/Ma_N.png"
+  },
+  "Young Link": {
+    "name": "Young Link",
+    "id": "Yl",
+    "icon": "../../assets/Yl_N.png"
+  },
+  "Donkey Kong": {
+    "name": "Donkey Kong",
+    "id": "Dk",
+    "icon": "../../assets/Dk_N.png"
+  },
+  "Link": {
+    "name": "Link",
+    "id": "Li",
+    "icon": "../../assets/Li_N.png"
+  },
+  "Game & Watch": {
+    "name": "Game & Watch",
+    "id": "Gw",
+    "icon": "../../assets/Gw_N.png"
+  },
+  "Roy": {
+    "name": "Roy",
+    "id": "Ro",
+    "icon": "../../assets/Ro_N.png"
+  },
+  "Mewtwo": {
+    "name": "Mewtwo",
+    "id": "Me",
+    "icon": "../../assets/Me_N.png"
+  },
+  "Ness": {
+    "name": "Ness",
+    "id": "Ne",
+    "icon": "../../assets/Ne_N.png"
+  },
+  "Pichu": {
+    "name": "Pichu",
+    "id": "Pi",
+    "icon": "../../assets/Pi_N.png"
+  },
+  "Zelda": {
+    "name": "Zelda",
+    "id": "Ze",
+    "icon": "../../assets/Ze_N.png"
+  },
+  "Kirby": {
+    "name": "Kirby",
+    "id": "Ki",
+    "icon": "../../assets/Ki_N.png"
+  },
+  "Bowser": {
+    "name": "Bowser",
+    "id": "Bo",
+    "icon": "../../assets/Bo_N.png"
+  }
+}
