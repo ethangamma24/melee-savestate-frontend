@@ -43,7 +43,8 @@ export class SearchComponent implements AfterViewInit {
     'opponent',
     'stage',
     'training_type',
-    'downloads'
+    'downloads',
+    'download-button'
   ]
   length: any;
   page_size = 25;
@@ -80,6 +81,10 @@ export class SearchComponent implements AfterViewInit {
     if(this.data_source.paginator) {
       this.data_source.paginator.firstPage();
     }
+  }
+
+  search () {
+    console.log('searching')
   }
 
 }

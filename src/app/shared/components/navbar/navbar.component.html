@@ -11,8 +11,14 @@
       </button>
       <!-- TODO: Put div here to check if user is logged in -->
       <mat-menu #menu="matMenu">
-        <button mat-menu-item routerLink="/login">Login</button>
-        <button mat-menu-item routerLink="/register">Register</button>
+        <div *ngIf="logged_in">
+          <button mat-menu-item routerLink="/profile">Profile</button>
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </div>
+        <div *ngIf="!logged_in">
+          <button mat-menu-item routerLink="/login">Login</button>
+          <button mat-menu-item routerLink="/register">Register</button>
+        </div>
       </mat-menu>
     </div>
   </mat-toolbar>

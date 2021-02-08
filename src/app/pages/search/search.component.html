@@ -220,7 +220,7 @@
         </ng-container>
         <ng-container matColumnDef="stage">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Stage</mat-header-cell>
-          <mat-cell *matCellDef="let row">{{ row.stage }}</mat-cell>
+          <mat-cell *matCellDef="let row"><img class="stage-pic" src='../../assets/{{ row.stage }}.jpg'></mat-cell>
         </ng-container>
         <ng-container matColumnDef="training_type">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
@@ -229,6 +229,12 @@
         <ng-container matColumnDef="downloads">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Downloads</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row.downloads }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="download-button">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <button mat-stroked-button color="accent" (click)="download()"><mat-icon>download</mat-icon></button>
+          </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="columns; stick: false"></mat-header-row>

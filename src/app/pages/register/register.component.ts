@@ -5,6 +5,10 @@ import { ErrorStateMatcher } from '@angular/material/core';
 
 import { ConfirmedValidator } from './confirmed.validator';
 
+import { AccountService } from '../../services/account.service';
+
+import { User } from '../../models/user';
+
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -19,9 +23,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterComponent {
 
+  user: User;
+
   constructor(
     private formBuilder: FormBuilder,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public account_service: AccountService
   ) { }
 
   registration_form = this.formBuilder.group({
@@ -75,14 +82,19 @@ export class RegisterComponent {
     Validators.required,
 ]);
 
-  submit() {
-    // TODO: Write API call to check if username is available
-    let username_is_taken = false;
-    if (username_is_taken) { this.openUsernameDialog() }
+  async register() {
+    let username_taken = await this.account_service.usernameTaken(this.registration_form.controls.username.value);
+    if (username_taken.toString() === 'true') { this.openUsernameDialog() }
     else {
-      // TODO: Write API call for submitting registration form, and sending welcome email.
-      // TODO: Save form values to register service, and pass to confirmation page.
+      this.user = {
+        name: this.registration_form.controls.name.value,
+        username: this.registration_form.controls.username.value,
+        email: this.registration_form.controls.email.value,
+        password: this.registration_form.controls.password.value,
+      }
+      this.account_service.register(this.user);
     }
+
   }
 
   openUsernameDialog() {

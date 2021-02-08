@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
+import { AccountService } from '../../services/account.service';
+
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
     const isSubmitted = form && form.submitted;
@@ -16,7 +18,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent {
 
-  constructor() { }
+email: string;
+password: string;
+
+  constructor(
+    public account_service: AccountService
+  ) { }
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -29,4 +36,7 @@ export class LoginComponent {
 
   matcher = new MyErrorStateMatcher();
 
+  login() {
+    this.account_service.login(this.email, this.password);
+  }
 }
