@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
@@ -28,7 +29,8 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    public account_service: AccountService
+    public account_service: AccountService,
+    public router: Router
   ) { }
 
   registration_form = this.formBuilder.group({
@@ -93,6 +95,7 @@ export class RegisterComponent {
         password: this.registration_form.controls.password.value,
       }
       this.account_service.register(this.user);
+      this.openConfirmationDialog();
     }
 
   }
@@ -105,6 +108,12 @@ export class RegisterComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       this.registration_form.controls.username.setValue('');
+    });
+  }
+
+  openConfirmationDialog() {
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      width: '500px',
     });
   }
 
@@ -123,6 +132,24 @@ export class UsernameDialog {
     @Inject(MAT_DIALOG_DATA) public data) {}
 
   close(): void {
+    this.dialogRef.close();
+  }
+
+}
+
+@Component({
+  selector: 'confirmation-dialog',
+  templateUrl: 'confirmation-dialog.html',
+})
+export class ConfirmationDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmationDialog>,
+    @Inject(MAT_DIALOG_DATA) public data,
+    public router: Router) {}
+
+  closeConfirmation(): void {
+    this.router.navigate(['/']);
     this.dialogRef.close();
   }
 

@@ -6,7 +6,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { RegistrationConfirmationComponent } from './pages/register/registration-confirmation/registration-confirmation.component';
 import { SavestateDetailsComponent } from './pages/savestate-details/savestate-details.component';
 import { SearchComponent } from './pages/search/search.component';
 import { UploadSavestateComponent } from './pages/upload-savestate/upload-savestate.component';
@@ -17,7 +16,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'registration-confirmation', component: RegistrationConfirmationComponent },
   { path: 'savestate-details/:id', component: SavestateDetailsComponent },
   { path: 'search', component: SearchComponent },
   { path: 'upload', component: UploadSavestateComponent }

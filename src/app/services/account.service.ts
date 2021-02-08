@@ -41,12 +41,13 @@ export class AccountService {
     }
 
     async register(user: User) {
-        return await this.http.post(`/api/register`, user);
+        console.log(user);
+        return await this.http.post(`/api/register`, user).toPromise();
     }
 
     async usernameTaken(username) {
         let body = { "username": username }
-        return await this.http.post<string>(`/api/username-exists`, body).toPromise();
+        return await this.http.post(`/api/username-exists`, body).toPromise();
     }
     //
     // getAll() {

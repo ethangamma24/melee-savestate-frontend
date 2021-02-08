@@ -11,7 +11,6 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { AboutComponent } from './pages/about/about.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
-import { RegistrationConfirmationComponent } from './pages/register/registration-confirmation/registration-confirmation.component';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -45,7 +44,6 @@ import { HttpClientModule } from '@angular/common/http';
     AboutComponent,
     LoginComponent,
     RegisterComponent,
-    RegistrationConfirmationComponent
   ],
   imports: [
     BrowserModule,
