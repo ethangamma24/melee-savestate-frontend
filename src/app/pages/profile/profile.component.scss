@@ -1,0 +1,75 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-card {
+  margin: auto;
+  width: 40%;
+}
+
+mat-card-actions {
+  padding-left: 8px;
+}
+
+.stock-icon {
+  padding-right: 4px;
+  height: 30px;
+}
+
+.stage-pic {
+  padding-right: 4px;
+  height: 70px;
+}
+
+.dropdown {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.last-dropdown {
+  padding-left: 8px;
+  padding-right: 16px;
+}
+
+.mat-cell {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-size: 16px;
+}
+
+.mat-column-character {
+flex: 0 0 7% !important;
+  justify-content: center;
+}
+
+.mat-column-opponent {
+  flex: 0 0 7% !important;
+  justify-content: center;
+}
+
+.mat-column-stage {
+  justify-content: center;
+}
+
+.mat-column-training_type {
+  justify-content: center;
+}
+
+.mat-column-downloads {
+  justify-content: center;
+}
+
+.mat-column-training_name {
+  flex: 0 0 40% !important;
+}
+
+.mat-column-download-button {
+  // padding-left: 40px;
+  flex: 0 0 5% !important;
+}
