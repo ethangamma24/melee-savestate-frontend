@@ -9,7 +9,7 @@ const body_parser = require('body-parser');
 const api = require('./api');
 
 // app.use(compression());
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '/dist/melee-savestate-frontend')));
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
@@ -19,7 +19,7 @@ app.use(body_parser.urlencoded({
 app.use('/api', api);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist/index.html'));
+  res.sendFile(path.join(__dirname, 'dist/melee-savestate-frontend/index.html'));
 })
 
 const port = 80
