@@ -38,6 +38,7 @@ export class SearchComponent implements AfterViewInit {
 
   data_source = new MatTableDataSource();
   columns: any = [
+    'username',
     'training_name',
     'character',
     'opponent',
@@ -52,8 +53,8 @@ export class SearchComponent implements AfterViewInit {
   page_event: PageEvent;
 
   temp_data_source = [
-    { training_name: 'Fox Stomp Techchase at 50%', character: 'Cf', opponent: 'Fo', stage: 'fd', training_type: 'Techchase', downloads: 178 },
-    { training_name: 'Fox Edgeguard', character: 'Cf', opponent: 'Fo', stage: 'bf', training_type: 'Edgeguard', downloads: 349 },
+    { username: 'thetincan', training_name: 'Fox Stomp Techchase at 50%', character: 'Cf', opponent: 'Fo', stage: 'fd', training_type: 'Techchase', downloads: 178 },
+    { username: 'thetincan', training_name: 'Fox Edgeguard', character: 'Cf', opponent: 'Fo', stage: 'bf', training_type: 'Edgeguard', downloads: 349 },
   ];
 
   constructor() { }

@@ -206,6 +206,10 @@
         matSortDirection="desc"
         matSortDisableClear="true"
       >
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
+        <mat-cell *matCellDef="let row"><a routerLink="/profile/{{ row.username }}">{{ row.username }}</a></mat-cell>
+        </ng-container>
         <ng-container matColumnDef="training_name">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row.training_name }}</mat-cell>
