@@ -9,10 +9,9 @@
       <button color="primary" mat-mini-fab [matMenuTriggerFor]="menu">
         <mat-icon style="padding: 0px;">person</mat-icon>
       </button>
-      <!-- TODO: Put div here to check if user is logged in -->
       <mat-menu #menu="matMenu">
         <div *ngIf="logged_in">
-          <button mat-menu-item routerLink="/profile">Profile</button>
+          <button mat-menu-item routerLink="/profile/{{ username }}">Profile</button>
           <button mat-menu-item (click)="logout()">Logout</button>
         </div>
         <div *ngIf="!logged_in">
@@ -32,7 +31,8 @@
       <mat-nav-list>
         <a mat-list-item routerLink="/"><mat-icon>home</mat-icon>Home</a>
         <a mat-list-item routerLink="/search"><mat-icon>search</mat-icon>Search</a>
-        <a mat-list-item routerLink="/about"><mat-icon>info</mat-icon>About</a>
+        <a mat-list-item routerLink="/about"><mat-icon>info</mat-icon>Information</a>
+        <a mat-list-item routerLink="/upload"><mat-icon>cloud_upload</mat-icon>Upload</a>
       </mat-nav-list>
     </mat-sidenav>
 

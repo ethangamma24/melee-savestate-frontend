@@ -180,10 +180,16 @@
         <mat-option value="Battlefield">Yoshi's Island</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="last-dropdown">
+    <mat-form-field class="dropdown">
       <mat-label>Training Type</mat-label>
       <mat-select [formControl]="training_types" multiple>
         <mat-option *ngFor="let type of training_type_list" [value]="type">{{ type }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="last-dropdown">
+      <mat-label>Training Mode Version</mat-label>
+      <mat-select [formControl]="versions">
+        <mat-option *ngFor="let version of version_list" [value]="version">{{ version }}</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-stroked-button color="accent" (click)="search()">
@@ -229,6 +235,10 @@
         <ng-container matColumnDef="training_type">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
           <mat-cell *matCellDef="let row">{{ row.training_type }}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="version">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Version</mat-header-cell>
+          <mat-cell *matCellDef="let row">{{ row.version }}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="downloads">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Downloads</mat-header-cell>

@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
   logged_in = false;
+  username = '';
 
   private _mobileQueryListener: () => void;
 
@@ -26,11 +27,17 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     // TODO: Check to see if user is logged in
     console.log(localStorage.getItem('user'));
-    if (localStorage.getItem('user') != null) { this.logged_in = true; }
+    this.username = 'thetincan';
+    this.logged_in = true;
+    if (localStorage.getItem('user') != null) { 
+      this.logged_in = true;
+      // this.username = localStorage.getItem('user');
+    }
   }
 
   logout(): void {
     this.account_service.logout();
+    this.logged_in = false;
   }
 
 }

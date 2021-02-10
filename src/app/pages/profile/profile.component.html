@@ -46,6 +46,10 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.training_type }}</mat-cell>
     </ng-container>
+    <ng-container matColumnDef="version">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Version</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.version }}</mat-cell>
+    </ng-container>
     <ng-container matColumnDef="downloads">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Downloads</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.downloads }}</mat-cell>

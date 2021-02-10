@@ -35,6 +35,14 @@ export class SearchComponent implements AfterViewInit {
     'Attack on Shield',
     'Defense'
   ];
+  versions = new FormControl();
+  version_list: string[] = [
+    'Alpha 1',
+    'Alpha 2',
+    'Alpha 3',
+    'Alpha 6',
+    'Alpha 7.2'
+  ]
 
   data_source = new MatTableDataSource();
   columns: any = [
@@ -44,6 +52,7 @@ export class SearchComponent implements AfterViewInit {
     'opponent',
     'stage',
     'training_type',
+    'version',
     'downloads',
     'download-button'
   ]
@@ -53,8 +62,8 @@ export class SearchComponent implements AfterViewInit {
   page_event: PageEvent;
 
   temp_data_source = [
-    { username: 'thetincan', training_name: 'Fox Stomp Techchase at 50%', character: 'Cf', opponent: 'Fo', stage: 'fd', training_type: 'Techchase', downloads: 178 },
-    { username: 'thetincan', training_name: 'Fox Edgeguard', character: 'Cf', opponent: 'Fo', stage: 'bf', training_type: 'Edgeguard', downloads: 349 },
+    { username: 'thetincan', training_name: 'Fox Stomp Techchase at 50%', character: 'Cf', opponent: 'Fo', stage: 'fd', training_type: 'Techchase', version: 'Alpha 6', downloads: 178 },
+    { username: 'thetincan', training_name: 'Fox Edgeguard', character: 'Cf', opponent: 'Fo', stage: 'bf', training_type: 'Edgeguard', version: 'Alpha 3', downloads: 349 },
   ];
 
   constructor() { }
