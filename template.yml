@@ -15,6 +15,7 @@ Parameters:
   KeyPairName:
     Type: String
     Description: The name of an existing Amazon EC2 key pair in the region where the project is created, which you can use to SSH into the new Amazon EC2 Linux instances.
+    Default: 'elementary.pem'
   VpcId:
     Type: String
     Description: The ID of the Amazon Virtual Private Cloud (VPC) used for the new Amazon EC2 Linux instances.
