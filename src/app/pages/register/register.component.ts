@@ -86,7 +86,10 @@ export class RegisterComponent {
 
   async register() {
     let username_taken = await this.account_service.usernameTaken(this.registration_form.controls.username.value);
+    let email_taken = await this.account_service.emailTaken(this.registration_form.controls.email.value);
+
     if (username_taken.toString() === 'true') { this.openUsernameDialog() }
+    else if (email_taken.toString() === 'true') { this.openEmailDialog() }
     else {
       this.user = {
         name: this.registration_form.controls.name.value,
@@ -111,6 +114,17 @@ export class RegisterComponent {
     });
   }
 
+  openEmailDialog() {
+    const dialogRef = this.dialog.open(EmailDialog, {
+      width: '500px',
+      data: { email: this.registration_form.controls.email.value }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.registration_form.controls.email.setValue('');
+    });
+  }
+
   openConfirmationDialog() {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       width: '500px',
@@ -126,6 +140,22 @@ export class RegisterComponent {
   templateUrl: 'username-dialog.html',
 })
 export class UsernameDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<UsernameDialog>,
+    @Inject(MAT_DIALOG_DATA) public data) {}
+
+  close(): void {
+    this.dialogRef.close();
+  }
+
+}
+
+@Component({
+  selector: 'email-dialog',
+  templateUrl: 'email-dialog.html',
+})
+export class EmailDialog {
 
   constructor(
     public dialogRef: MatDialogRef<UsernameDialog>,

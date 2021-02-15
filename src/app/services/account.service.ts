@@ -15,22 +15,45 @@ export class AccountService {
         private router: Router,
         private http: HttpClient
     ) {
-        this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
-        this.user = this.userSubject.asObservable();
+        // this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
+        // this.user = this.userSubject.asObservable();
     }
 
     // public get userValue(): User {
     //     return this.userSubject.value;
     // }
 
-    login(username, password) {
-        // return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
-        //     .pipe(map(user => {
-        //         // store user details and jwt token in local storage to keep user logged in between page refreshes
-        //         localStorage.setItem('user', JSON.stringify(user));
-        //         this.userSubject.next(user);
-        //         return user;
-        //     }));
+    async checkToken() {
+      let token = localStorage.getItem('token');
+      let user: any;
+      if(token != null) {
+        await this.http.post(`/api/SaveState-Check-Token`, { "token": token }).toPromise().then( (res) => { user = res; });
+        localStorage.setItem('user', user);
+        return true;
+      } else {
+        localStorage.setItem('user', null);
+        return false;
+      }
+    }
+
+    async login(email, password) {
+      let login_successful;
+      let user: any;
+      let body = {
+        "email": email,
+        "password": password
+      }
+      await this.http.post(`/api/login`, body).toPromise().then( (res) => { login_successful = res; });
+
+      console.log(login_successful);
+      if (login_successful) {
+        await this.http.post(`/api/SaveState-Get-User`, body).toPromise().then( (res) => { user = res; });
+        localStorage.setItem('user', user.username.S);
+        localStorage.setItem('token', user.token.S);
+        return login_successful;
+      } else {
+        return login_successful;
+      }
     }
 
     logout() {
@@ -49,7 +72,12 @@ export class AccountService {
         let body = { "username": username }
         return await this.http.post(`/api/username-exists`, body).toPromise();
     }
-    //
+    
+    async emailTaken(email) {
+        let body = { "email": email }
+        return await this.http.post(`/api/SaveState-Email-Exists`, body).toPromise();
+    }
+    
     // getAll() {
     //     return this.http.get<User[]>(`${environment.apiUrl}/users`);
     // }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 import { AccountService } from '../../services/account.service';
@@ -18,25 +18,39 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent {
 
-email: string;
-password: string;
+  password_div = false;
+  email_div = false;
 
   constructor(
+    private formBuilder: FormBuilder,
     public account_service: AccountService
   ) { }
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+  login_form = this.formBuilder.group({
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', Validators.required]
+  });
 
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-  ]);
+  getEmailErrorMessage() {
+    if (this.login_form.controls.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.login_form.controls.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  getPasswordErrorMessage() {
+    if (this.login_form.controls.password.hasError('required')) {
+      return 'You must enter a value';
+    }
+  }
 
   matcher = new MyErrorStateMatcher();
 
-  login() {
-    this.account_service.login(this.email, this.password);
+  async login() {
+    console.log(this.login_form);
+    let login_successful = await this.account_service.login(this.login_form.controls.email.value, this.login_form.controls.password.value);
+    if (!login_successful) { this.password_div = true; }
+    else if (login_successful === null) { this.email_div = true; }
   }
 }

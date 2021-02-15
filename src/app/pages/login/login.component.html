@@ -6,25 +6,25 @@
       Login
     </mat-card-title>
     <mat-card-content>
-      <form>
+      <div [formGroup]="login_form">
         <mat-form-field>
-          <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
-            Email is <strong>required</strong>
-          </mat-error>
+          <input matNativeControl placeholder="Email" formControlName="email">
+          <mat-error *ngIf="login_form.controls.email.invalid">{{ getEmailErrorMessage() }}</mat-error>
         </mat-form-field>
         <br />
         <mat-form-field>
-          <input matInput type="password" placeholder="Password" [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+          <input matNativeControl type="password" placeholder="Password" formControlName="password">
+          <mat-error *ngIf="login_form.controls.password.invalid">{{ getPasswordErrorMessage() }}</mat-error>
         </mat-form-field>
-      </form>
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="accent" (click)="login()">SUBMIT</button>
       <button mat-raised-button color="primary" routerLink="/register">CREATE AN ACCOUNT</button>
     </mat-card-actions>
+    <div class="email-div" *ngIf="email_div || password_div">
+      <br />
+      <center><h4 color="red">Your email and/or password are incorrect. Please try again.</h4></center>
+    </div>
   </mat-card>
 </div>
