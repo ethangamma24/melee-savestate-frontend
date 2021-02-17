@@ -8,26 +8,33 @@ import { User } from '../models/user';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
-    public userSubject: BehaviorSubject<User>;
-    public user: Observable<User>;
+    public user: string;
+    public logged_in_subject: BehaviorSubject<boolean>;
+    public logged_in: Observable<boolean>;
 
     constructor(
         private router: Router,
         private http: HttpClient
     ) {
-        // this.userSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')));
-        // this.user = this.userSubject.asObservable();
+        this.user = localStorage.getItem('user');
+        if (this.user !== null) {
+          this.logged_in_subject = new BehaviorSubject(true);
+        } else {
+          this.logged_in_subject = new BehaviorSubject(false);
+        }
+        this.logged_in = this.logged_in_subject.asObservable();
     }
 
-    // public get userValue(): User {
-    //     return this.userSubject.value;
-    // }
+    public getLoggedIn(): Observable<boolean> {
+      return this.logged_in_subject.asObservable();
+    }
 
     async checkToken() {
       let token = localStorage.getItem('token');
+      let email = localStorage.getItem('email');
       let user: any;
       if(token != null) {
-        await this.http.post(`/api/SaveState-Check-Token`, { "token": token }).toPromise().then( (res) => { user = res; });
+        await this.http.post(`/api/SaveState-Check-Token`, { "token": token, "email": email }).toPromise().then( (res) => { user = res; });
         localStorage.setItem('user', user);
         return true;
       } else {
@@ -45,11 +52,12 @@ export class AccountService {
       }
       await this.http.post(`/api/login`, body).toPromise().then( (res) => { login_successful = res; });
 
-      console.log(login_successful);
       if (login_successful) {
         await this.http.post(`/api/SaveState-Get-User`, body).toPromise().then( (res) => { user = res; });
         localStorage.setItem('user', user.username.S);
         localStorage.setItem('token', user.token.S);
+        localStorage.setItem('email', user.email.S);
+        this.logged_in_subject.next(true);
         return login_successful;
       } else {
         return login_successful;
@@ -59,7 +67,8 @@ export class AccountService {
     logout() {
         // remove user from local storage and set current user to null
         localStorage.removeItem('user');
-        this.userSubject.next(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('email');
         this.router.navigate(['/login']);
     }
 

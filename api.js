@@ -63,7 +63,8 @@ router.post("/SaveState-Get-User", (req, res) => {
 
 router.post("/SaveState-Check-Token", (req, res) => {
   axios.post('https://jzdxxh1tdj.execute-api.us-east-1.amazonaws.com/dev/SaveState-Check-Token', req.body).then( (response) => {
-    res.send(response.data.Item.username.S);
+    console.log(response.data);
+    res.send(response.data);
   }).catch( (error) => {
     console.log(error);
   });

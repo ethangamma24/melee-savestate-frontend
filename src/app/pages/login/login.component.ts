@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Router } from '@angular/router';
 
 import { AccountService } from '../../services/account.service';
 
@@ -23,7 +24,8 @@ export class LoginComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    public account_service: AccountService
+    public account_service: AccountService,
+    public router: Router
   ) { }
 
   login_form = this.formBuilder.group({
@@ -52,5 +54,7 @@ export class LoginComponent {
     let login_successful = await this.account_service.login(this.login_form.controls.email.value, this.login_form.controls.password.value);
     if (!login_successful) { this.password_div = true; }
     else if (login_successful === null) { this.email_div = true; }
+    this.router.navigate(['/']);
   }
+
 }

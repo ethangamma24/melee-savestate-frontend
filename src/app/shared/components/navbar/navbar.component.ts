@@ -27,12 +27,13 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     // TODO: Check to see if user is logged in
     console.log(localStorage.getItem('user'));
-    this.username = 'thetincan';
-    this.logged_in = true;
     if (localStorage.getItem('user') != null) { 
-      this.logged_in = true;
-      // this.username = localStorage.getItem('user');
+      this.account_service.getLoggedIn().subscribe( (logged_in) => {
+        this.logged_in = logged_in;
+      });
+      this.username = localStorage.getItem('user');
     }
+    this.account_service.checkToken();
   }
 
   logout(): void {
