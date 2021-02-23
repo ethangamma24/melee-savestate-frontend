@@ -32,6 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FileUploadModule } from 'ng2-file-upload';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +66,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatToolbarModule,
     ReactiveFormsModule,
+    FileUploadModule,
     BrowserAnimationsModule
   ],
   providers: [],

@@ -201,13 +201,13 @@
         </mat-form-field>
         <mat-form-field class="dropdown">
           <mat-label>Training Type</mat-label>
-          <mat-select [formControl]="training_types">
+          <mat-select [formControl]="training_type">
             <mat-option *ngFor="let type of training_type_list" [value]="type">{{ type }}</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="last-dropdown">
           <mat-label>Training Mode Version</mat-label>
-          <mat-select [formControl]="versions">
+          <mat-select [formControl]="version">
             <mat-option *ngFor="let version of version_list" [value]="version">{{ version }}</mat-option>
           </mat-select>
         </mat-form-field>

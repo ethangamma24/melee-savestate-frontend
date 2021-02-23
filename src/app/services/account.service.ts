@@ -34,12 +34,12 @@ export class AccountService {
       let email = localStorage.getItem('email');
       let user: any;
       if(token != null) {
-        await this.http.post(`/api/SaveState-Check-Token`, { "token": token, "email": email }).toPromise().then( (res) => { user = res; });
+        user = await this.http.post(`/api/SaveState-Check-Token`, { "token": token, "email": email }, { responseType: 'text' }).toPromise();
         localStorage.setItem('user', user);
-        return true;
+        return user;
       } else {
         localStorage.setItem('user', null);
-        return false;
+        return null;
       }
     }
 
