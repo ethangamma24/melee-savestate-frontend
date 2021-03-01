@@ -8,6 +8,8 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  async uploadFile(data) {
+  public async getFilesByUser(data) {
+    return await this.http.post(`api/SaveState-Get-Files-By-User`, { user: data }).toPromise();
+  }
 
 }

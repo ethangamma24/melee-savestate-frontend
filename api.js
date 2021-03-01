@@ -4,21 +4,22 @@ const bcrypt = require('bcryptjs');
 const axios = require('axios');
 const AWS = require('aws-sdk');
 const multer = require('multer');
+const multerS3 = require('multer-s3');
+const fs = require('fs');
 
 const DIR = './files/';
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, DIR);
-  },
-  filename: (req, file, cb) => {
-    const file_name = file.original_name.toLowerCase().split(' ').join('-');
-    cb(null, file_name);
-  }
-});
-
-let upload = multer({
-  storage: storage,
+let s3 = new AWS.S3();
+let now = new Date();
+let key = '';
+let upload = multer({ 
+  storage: multerS3({
+    s3: s3,
+    bucket: 'savestate-files',
+    key: (req, file, cb) => {
+      cb(null, this.key);
+    }
+  })
 });
 
 router.post("/username-exists", (req, res) => {
@@ -88,15 +89,19 @@ router.post("/SaveState-Check-Token", (req, res) => {
 
 })
 
-router.post("/SaveState-Upload-File", upload.file('file'), (req, res) => {
+router.post("/Update-Key", (req, res) => {
+  console.log(req);
+  console.log(req.body);
+  console.log(`req body.s3_location: ${req.body.s3_location}`);
+  this.key = req.body.s3_location;
+  res.send(true);
+})
+
+router.post("/SaveState-Upload-File", upload.any(), (req, res) => {
   // TODO: Upload file with this
-  s3.putObject({
-    Bucket: 'savestate-files',
-    Key: req.body.s3_location,
-    Body: req.body.file
-  }, (response) => {
-    res.send(response);
-  });
+  // console.log(req.files);
+  // console.log(req.body);
+  res.send(true);
 });
 
 router.post("/SaveState-Upload-File-Metadata", (req, res) => {
@@ -119,13 +124,36 @@ router.post("/SaveState-Get-Files-By-Character", (req, res) => {
   });
 })
 
-router.post("/SaveState-Download-File", (req, res) => {
-  axios.post('https://jzdxxh1tdj.execute-api.us-east-1.amazonaws.com/dev/SaveState-Download-File', req.body).then( (response) => {
-    // console.log(response.data);
+router.post("/SaveState-Get-Files-By-User", (req, res) => {
+  axios.post('https://jzdxxh1tdj.execute-api.us-east-1.amazonaws.com/dev/SaveState-Get-Files-By-User', req.body).then( (response) => {
+    console.log(response.data);
     res.send(response.data);
   }).catch( (error) => {
     console.log(error);
   });
+})
+
+router.get("/SaveState-Download-File", (req, res) => {
+  // axios.post('https://jzdxxh1tdj.execute-api.us-east-1.amazonaws.com/dev/SaveState-Download-File', req.body).then( (response) => {
+  //   // console.log(response.data);
+  //   res.send(response.data);
+  // }).catch( (error) => {
+  //   console.log(error);
+  // });
+  console.log(req.query);
+  let S3 = new AWS.S3();
+  let params = {
+    Bucket: "savestate-files",
+    Key: req.query.url
+  }
+  S3.getObject(params, function(err, data) {
+    if (err) {
+      console.log(err, err.stack);
+    } else {
+      console.log(data);
+      res.send(data.Body);
+    }
+  })
 })
 
 

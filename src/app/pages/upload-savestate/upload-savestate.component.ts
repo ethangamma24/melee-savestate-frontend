@@ -58,7 +58,8 @@ export class UploadSavestateComponent implements OnInit {
       this.file_name = 'Please upload a .gci file.';
     } else if (file_uploaded) { 
       this.file_name = file_uploaded.name;
-      this.file = new Blob([file_uploaded]);
+      // this.file = new Blob([file_uploaded]);
+      this.file = file_uploaded;
       console.log(this.file);
       // this.changeFile(file_uploaded).then( (base64: string): any => {
       //   console.log(base64);
@@ -100,7 +101,9 @@ export class UploadSavestateComponent implements OnInit {
       }
       form_data.append('file', this.file);
       form_data.append('file_name', s3_location);
-      console.log('Component:');
+      console.log(s3_location);
+
+      let key_updated = await this.upload_savestate_service.updateKey(data);
 
       let success = await this.upload_savestate_service.upload(form_data);
 

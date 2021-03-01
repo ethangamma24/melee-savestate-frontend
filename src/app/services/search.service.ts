@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,8 @@ export class SearchService {
   }
 
   public async downloadFile(data) {
-    return await this.http.post(`api/SaveState-Download-File`, data).toPromise();
+    let params = new HttpParams().set('url', data);
+    return await this.http.get(`api/SaveState-Download-File`, { responseType: 'blob', params: params }).toPromise();
   }
 
 }

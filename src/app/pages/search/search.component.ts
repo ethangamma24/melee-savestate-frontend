@@ -161,7 +161,7 @@ export class SearchComponent implements AfterViewInit {
   async downloadFile(row: any) {
     console.log(row);
     let data: any;
-    data = await this.search_service.downloadFile(row);
+    data = await this.search_service.downloadFile(row.s3_object_location.S);
     console.log(data);
     const blob = new Blob([data]);
     const url = window.URL.createObjectURL(blob);

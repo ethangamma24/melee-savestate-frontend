@@ -9,6 +9,9 @@ import { MatSort } from '@angular/material/sort';
 
 import { Observable } from 'rxjs';
 
+import { ProfileService } from '../../services/profile.service';
+import { SearchService } from '../../services/search.service';
+
 import * as characters from '../../shared/characters.json';
 
 @Component({
@@ -44,15 +47,21 @@ export class ProfileComponent implements AfterViewInit {
     { training_name: 'Fox Edgeguard', character: 'Cf', opponent: 'Fo', stage: 'bf', training_type: 'Edgeguard', downloads: 349 },
   ];
 
-  constructor(public route: ActivatedRoute) { }
+  constructor(
+    public route: ActivatedRoute,
+    public profile_service: ProfileService,
+    public search_service: SearchService
+  ) { }
 
-  ngAfterViewInit(): void {
-    this.data_source.data = this.temp_data_source;
+  async ngAfterViewInit() {
+    let data: any;
+    console.log(data);
+    this.data_source.data = [...data];
     this.route.params.subscribe( (params) => {
       this.username = params['id'];
+      data = await this.profile_service.getFilesByUser(this.username);
     });
     setTimeout(() => {
-      this.length = 2;
       this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
       this.length = this.temp_data_source.length;
       this.data_source.paginator = this.paginator;
@@ -61,4 +70,24 @@ export class ProfileComponent implements AfterViewInit {
       this.data_source.sort.active = 'downloads';
     }, 10);
   }
+
+  async downloadFile(row: any) {
+    console.log(row);
+    let data: any;
+    data = await this.search_service.downloadFile(row.s3_object_location);
+    console.log(data);
+    const blob = new Blob([data]);
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = row.file_name;
+
+    a.click();
+
+    setTimeout( () => {
+      URL.revokeObjectURL(url);
+    }, 1000);
+    
+  }
+
 }
