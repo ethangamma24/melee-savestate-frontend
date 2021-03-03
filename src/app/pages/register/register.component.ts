@@ -37,7 +37,7 @@ export class RegisterComponent {
     name: ['', Validators.required],
     username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
+    password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%*?&].{7,}')]],
     confirm_password: ['', Validators.required],
   }, { validator: ConfirmedValidator ('password', 'confirm_password') }
   )
@@ -66,6 +66,11 @@ export class RegisterComponent {
     if (this.registration_form.controls.password.hasError('required')) {
       return 'You must enter a value';
     }
+    
+  }
+
+  getPasswordPatternErrorMessage() {
+    return this.registration_form.controls.password.hasError('pattern') ? 'Password must be at least 8 characters long, contain one uppercase and lowercase letter, and one number.' : '';
   }
 
   getConfirmationPasswordErrorMessage() {

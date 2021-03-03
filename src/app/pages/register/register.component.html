@@ -23,6 +23,7 @@
         <mat-form-field>
           <input matNativeControl type="password" placeholder="Password" formControlName="password" [errorStateMatcher]="matcher">
           <mat-error *ngIf="registration_form.controls.password.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+          <mat-error *ngIf="registration_form.get('password').hasError('pattern')">{{ getPasswordPatternErrorMessage() }}</mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matNativeControl type="password" placeholder="Confirm Password" formControlName="confirm_password" [errorStateMatcher]="matcher">
