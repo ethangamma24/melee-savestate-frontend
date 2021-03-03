@@ -13,8 +13,8 @@ import { AccountService } from '../../../services/account.service';
 export class NavbarComponent implements OnInit {
 
   mobileQuery: MediaQueryList;
-  logged_in = false;
-  username = localStorage.getItem('user'));
+  logged_in: boolean;
+  username: any;
 
   private _mobileQueryListener: () => void;
 
@@ -22,13 +22,13 @@ export class NavbarComponent implements OnInit {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+    this.logged_in = false;
+    this.username = localStorage.getItem('user');
   }
 
   ngOnInit(): void {
     // TODO: Check to see if user is logged in
-    console.log(localStorage.getItem('user'));
-    logged_in = false;
-    if (localStorage.getItem('user') != null) { 
+    if (localStorage.getItem('user') != null) {
       this.account_service.getLoggedIn().subscribe( (logged_in) => {
         this.logged_in = logged_in;
       });

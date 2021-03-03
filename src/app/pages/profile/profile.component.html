@@ -32,18 +32,18 @@
     </ng-container>
     <ng-container matColumnDef="character">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Character</mat-header-cell>
-      <!-- <mat-cell *matCellDef="let row"><img class="stock-icon" src='../../assets/{{ row.character }}_N.png'></mat-cell> -->
-      <mat-cell *matCellDef="let row">{{ row.character }}</mat-cell>
+      <mat-cell *matCellDef="let row"><img class="stock-icon" src='../../assets/{{ row.character }}.png'></mat-cell>
+      <!-- <mat-cell *matCellDef="let row">{{ row.character.S }}</mat-cell> -->
     </ng-container>
     <ng-container matColumnDef="opponent">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Opponent</mat-header-cell>
-      <!-- <mat-cell *matCellDef="let row"><img class="stock-icon" src='../../assets/{{ row.opponent }}_N.png'></mat-cell> -->
-      <mat-cell *matCellDef="let row">{{ row.opponent }}</mat-cell>
+      <mat-cell *matCellDef="let row"><img class="stock-icon" src='../../assets/{{ row.opponent }}.png'></mat-cell>
+      <!-- <mat-cell *matCellDef="let row">{{ row.opponent.S }}</mat-cell> -->
     </ng-container>
     <ng-container matColumnDef="stage">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Stage</mat-header-cell>
-      <!-- <mat-cell *matCellDef="let row"><img class="stage-pic" src='../../assets/{{ row.stage }}.jpg'></mat-cell> -->
-      <mat-cell *matCellDef="let row">{{ row.stage }}</mat-cell>
+      <mat-cell *matCellDef="let row"><img class="stage-pic" src='../../assets/{{ row.stage }}.jpg'></mat-cell>
+      <!-- <mat-cell *matCellDef="let row">{{ row.stage.S }}</mat-cell> -->
     </ng-container>
     <ng-container matColumnDef="training_type">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
@@ -75,5 +75,5 @@
       [pageSize]="page_size"
       [pageSizeOptions]="page_size_options">
     </mat-paginator>
-  </mat-table>    
+  </mat-table>
 </div></div>

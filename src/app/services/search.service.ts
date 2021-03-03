@@ -14,6 +14,10 @@ export class SearchService {
     return await this.http.post(`api/SaveState-Get-Files-By-Character`, data).toPromise();
   }
 
+  public async getFilesByPopularity() {
+    return await this.http.post(`api/SaveState-Get-Files-By-Popularity`, {}).toPromise();
+  }
+
   public async downloadFile(data) {
     let params = new HttpParams().set('url', data);
     return await this.http.get(`api/SaveState-Download-File`, { responseType: 'blob', params: params }).toPromise();

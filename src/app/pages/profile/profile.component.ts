@@ -56,11 +56,11 @@ export class ProfileComponent implements AfterViewInit {
   async ngAfterViewInit() {
     let data: any;
     console.log(data);
-    this.data_source.data = [...data];
     this.route.params.subscribe( (params) => {
       this.username = params['id'];
-      data = await this.profile_service.getFilesByUser(this.username);
     });
+    data = await this.profile_service.getFilesByUser(this.username);
+    this.data_source.data = [...data];
     setTimeout(() => {
       this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
       this.length = this.temp_data_source.length;
@@ -87,7 +87,7 @@ export class ProfileComponent implements AfterViewInit {
     setTimeout( () => {
       URL.revokeObjectURL(url);
     }, 1000);
-    
+
   }
 
 }

@@ -12,7 +12,7 @@ const DIR = './files/';
 let s3 = new AWS.S3();
 let now = new Date();
 let key = '';
-let upload = multer({ 
+let upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: 'savestate-files',
@@ -133,13 +133,23 @@ router.post("/SaveState-Get-Files-By-User", (req, res) => {
   });
 })
 
+router.post("/SaveState-Get-Files-By-Popularity", (req, res) => {
+  axios.post('https://jzdxxh1tdj.execute-api.us-east-1.amazonaws.com/dev/SaveState-Get-Files-By-Popularity', req.body).then( (response) => {
+    console.log(response.data);
+    res.send(response.data);
+  }).catch( (error) => {
+    console.log(error);
+  });
+})
+
+
 router.get("/SaveState-Download-File", (req, res) => {
-  // axios.post('https://jzdxxh1tdj.execute-api.us-east-1.amazonaws.com/dev/SaveState-Download-File', req.body).then( (response) => {
-  //   // console.log(response.data);
-  //   res.send(response.data);
-  // }).catch( (error) => {
-  //   console.log(error);
-  // });
+  axios.post('https://jzdxxh1tdj.execute-api.us-east-1.amazonaws.com/dev/SaveState-Download-File', req.query).then( (response) => {
+    console.log(response.data);
+    // res.send(response.data);
+  }).catch( (error) => {
+    console.log(error);
+  });
   console.log(req.query);
   let S3 = new AWS.S3();
   let params = {

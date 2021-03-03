@@ -67,16 +67,29 @@ export class SearchComponent implements AfterViewInit {
   page_size = 25;
   page_size_options: number[] = [10, 25, 50];
   page_event: PageEvent;
+  data: any;
+  default_search: boolean;
 
   temp_data_source = [
     { username: 'thetincan', training_name: 'Fox Stomp Techchase at 50%', character: 'Cf', opponent: 'Fo', stage: 'fd', training_type: 'Techchase', version: 'Alpha 6', downloads: 178 },
     { username: 'thetincan', training_name: 'Fox Edgeguard', character: 'Cf', opponent: 'Fo', stage: 'bf', training_type: 'Edgeguard', version: 'Alpha 3', downloads: 349 },
   ];
 
-  constructor(public search_service: SearchService) { }
+  constructor(public search_service: SearchService) {
+    this.default_search = true;
+  }
 
-  ngAfterViewInit(): void {
-    // this.data_source.data = this.temp_data_source;
+  async ngAfterViewInit() {
+    this.data = await this.search_service.getFilesByPopularity();
+    this.data_source.data = [...this.data];
+    setTimeout(() => {
+      this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
+      this.length = this.temp_data_source.length;
+      this.data_source.paginator = this.paginator;
+      this.data_source.sort = this.sort;
+      this.data_source.sort.direction = 'desc';
+      this.data_source.sort.active = 'downloads';
+    }, 10);
   }
 
   applyFilter(filter_value: string) {
@@ -139,11 +152,10 @@ export class SearchComponent implements AfterViewInit {
           filter_expression += '#t = :tt';
         }
       }
-      
-      let data: any; 
-      data = await this.search_service.getFilesByCharacter([key_expression, filter_attributes, filter_attribute_names, filter_expression]);
 
-      this.data_source.data = [...data];
+      this.data = await this.search_service.getFilesByCharacter([key_expression, filter_attributes, filter_attribute_names, filter_expression]);
+
+      this.data_source.data = [...this.data];
       setTimeout(() => {
         this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
         this.length = this.temp_data_source.length;
@@ -160,21 +172,21 @@ export class SearchComponent implements AfterViewInit {
 
   async downloadFile(row: any) {
     console.log(row);
-    let data: any;
-    data = await this.search_service.downloadFile(row.s3_object_location.S);
-    console.log(data);
-    const blob = new Blob([data]);
+    let file: any;
+    file = await this.search_service.downloadFile(row.s3_object_location.S || row.s3_object_location);
+    console.log(file);
+    const blob = new Blob([file]);
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = row.file_name.S;
+    a.download = row.file_name.S || row.file_name;
 
     a.click();
 
     setTimeout( () => {
       URL.revokeObjectURL(url);
     }, 1000);
-    
+
   }
 
 }
