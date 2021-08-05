@@ -51,14 +51,17 @@ export class LoginComponent {
   matcher = new MyErrorStateMatcher();
 
   async login() {
-    console.log(this.login_form);
+    this.password_div = false;
+    this.email_div = false;
     let login_successful = await this.account_service.login(this.login_form.controls.email.value, this.login_form.controls.password.value);
     if (!login_successful) { this.password_div = true; }
     else if (login_successful === null) { this.email_div = true; }
-    else { this.success = true; }
-    console.log('logging in');
+    else { 
+      this.success = true; 
+      this.router.navigate(['/']);
+      window.location.reload();
+    }
     await setTimeout(function() {}, 500);
-    this.router.navigate(['/']);
   }
 
 }

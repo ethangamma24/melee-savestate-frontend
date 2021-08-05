@@ -27,6 +27,10 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkLogin();
+  }
+
+  checkLogin(): void {
     // TODO: Check to see if user is logged in
     if (localStorage.getItem('user') != null) {
       this.account_service.getLoggedIn().subscribe( (logged_in) => {
@@ -36,6 +40,7 @@ export class NavbarComponent implements OnInit {
     }
     this.account_service.checkToken();
   }
+
 
   logout(): void {
     this.account_service.logout();

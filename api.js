@@ -58,10 +58,13 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
   axios.post('https://jzdxxh1tdj.execute-api.us-east-1.amazonaws.com/dev/SaveState-Get-User', { "email": req.body.email }).then( (response) => {
     if (response.data.Item) {
+      console.log(response.data.Item);
       bcrypt.compare(req.body.password, response.data.Item.password.S).then( (result) => {
+        console.log(result);
         res.send(result);
       });
     } else {
+      console.log('user not found');
       res.send(null);
     }
   }).catch( (error) => {
