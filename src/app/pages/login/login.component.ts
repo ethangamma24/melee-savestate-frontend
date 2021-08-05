@@ -21,6 +21,7 @@ export class LoginComponent {
 
   password_div = false;
   email_div = false;
+  success = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,6 +55,9 @@ export class LoginComponent {
     let login_successful = await this.account_service.login(this.login_form.controls.email.value, this.login_form.controls.password.value);
     if (!login_successful) { this.password_div = true; }
     else if (login_successful === null) { this.email_div = true; }
+    else { this.success = true; }
+    console.log('logging in');
+    await setTimeout(function() {}, 500);
     this.router.navigate(['/']);
   }
 

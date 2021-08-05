@@ -1,5 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -19,12 +20,22 @@ const FileSaver = require('file-saver');
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
+      state('expanded', style({ height: '*', visibility: 'visible' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ]
 })
 export class SearchComponent implements AfterViewInit {
 
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+
+  isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
+  //expandedRow: any;
 
   character_filter = "";
   opponent_filter = "Any";
@@ -69,6 +80,8 @@ export class SearchComponent implements AfterViewInit {
   page_event: PageEvent;
   data: any;
   default_search: boolean;
+  //isExpansionDetailRow = (index, row) => row.hasOwnProperty('detailRow');
+  expandedRow: any;
 
   temp_data_source = [
     { username: 'thetincan', training_name: 'Fox Stomp Techchase at 50%', character: 'Cf', opponent: 'Fo', stage: 'fd', training_type: 'Techchase', version: 'Alpha 6', downloads: 178 },

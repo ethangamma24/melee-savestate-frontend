@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
 import { FormControl } from '@angular/forms';
 import { UploadSavestateService } from '../../services/upload-savestate.service';
@@ -9,16 +10,28 @@ import * as characters from '../../shared/characters.json';
 @Component({
   selector: 'app-upload-savestate',
   templateUrl: './upload-savestate.component.html',
-  styleUrls: ['./upload-savestate.component.scss']
+  styleUrls: ['./upload-savestate.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state(
+        'void',
+        style({ height: '0px', minHeight: '0', visibility: 'hidden' })
+      ),
+      state('*', style({ height: '*', visibility: 'visibile' })),
+      transition('void <=> *', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)'))
+    ])
+  ]
 })
 export class UploadSavestateComponent implements OnInit {
 
   not_logged_in = false;
+  description = '';
   file: any;
   file_name = '';
   character = '';
   opponent = '';
   stage = '';
+  title = '';
   training_type = new FormControl();
   training_type_list: string[] = [
     'Punish',
@@ -90,10 +103,12 @@ export class UploadSavestateComponent implements OnInit {
       let s3_location = now.getMonth() + 1 + '/' + now.getFullYear().toString() + '/' + user + now.getHours().toString() + now.getMinutes().toString() + now.getSeconds().toString();
       let data = {
         username: user,
+        description: this.description,
         file_name: this.file_name,
         character: this.character,
         opponent: this.opponent,
         stage: this.stage,
+        title: this.title,
         training_type: this.training_type.value,
         version: this.version.value,
         s3_location: s3_location,
@@ -114,14 +129,7 @@ export class UploadSavestateComponent implements OnInit {
         await this.upload_savestate_service.uploadMetadata(data);
       } else { this.upload_unsuccessful = true; }
     }
-    // // let successful = await this.upload.uploadSavestateFileToS3();
-    // let successful = false;
-    // if (successful) { 
-    //   this.upload_successful = true;
-    //   // this.upload.uploadSavestateMetadataToDynamo();
-    // } else { 
-    //   this.upload_unsuccessful = true; 
-    // }
+
   }
 
 }

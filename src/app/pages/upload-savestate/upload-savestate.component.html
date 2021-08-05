@@ -20,7 +20,7 @@
         <br />
         <mat-form-field class="dropdown">
           <mat-label>Title</mat-label>
-          <input matInput placeholder="Ex: Stomp on Fox at 50%">
+          <input matInput placeholder="Ex: Stomp on Fox at 50%" [(ngModel)]="title">
         </mat-form-field>
         <mat-form-field class="dropdown">
           <mat-label>Character</mat-label>
@@ -210,6 +210,11 @@
           <mat-select [formControl]="version">
             <mat-option *ngFor="let version of version_list" [value]="version">{{ version }}</mat-option>
           </mat-select>
+        </mat-form-field>
+        <br><br>
+        <mat-form-field class="dropdown" style="width: 50%;">
+          <mat-label>Description</mat-label>
+          <textarea matInput placeholder="Write a description! How to use the savestate, a description of the different slots, etc." [(ngModel)]="description"></textarea>
         </mat-form-field>
       </div>
     </mat-card-content>
