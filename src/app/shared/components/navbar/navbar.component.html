@@ -32,7 +32,9 @@
         <a mat-list-item routerLink="/"><mat-icon>home</mat-icon>Home</a>
         <a mat-list-item routerLink="/search"><mat-icon>search</mat-icon>Search</a>
         <a mat-list-item routerLink="/about"><mat-icon>info</mat-icon>Information</a>
-        <a mat-list-item routerLink="/upload"><mat-icon>cloud_upload</mat-icon>Upload</a>
+        <div *ngIf="logged_in">
+          <a mat-list-item routerLink="/upload"><mat-icon>cloud_upload</mat-icon>Upload</a>
+        </div>
       </mat-nav-list>
     </mat-sidenav>
 
