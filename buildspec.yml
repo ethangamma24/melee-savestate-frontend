@@ -9,6 +9,9 @@ phases:
       - REPOSITORY_URI=013695761039.dkr.ecr.us-east-1.amazonaws.com/savestate
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
+      - aws s3 cp s3://savestate-files/.docker.key .docker.key
+      - docker login -u thetincan --password-stdin < .docker.key
+      - rm .docker.key
   build:
     commands:
       - echo Build started on `date`
