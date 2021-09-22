@@ -204,7 +204,7 @@
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
       </mat-form-field>
     </div> -->
-    <mat-table
+    <mat-table #table
       [dataSource]="data_source"
       matSort
       class="mat-elevation-z8"
@@ -253,16 +253,16 @@
 
       // TODO: Figure out why the row expansion stuff isn't working.
 
-      <ng-container matColumnDef="expandedDetail">
+      <!-- <ng-container matColumnDef="expandedDetail">
         <mat-cell *matCellDef="let row" [attr.colspan]="columns.length">
           <div class="mat-row detail-row" [@detailExpand]="row == expandedRow ? 'expanded' : 'collapsed'">
             {{ row.description }}
           </div>
         </mat-cell>
-      </ng-container>
+      </ng-container> -->
 
       <mat-header-row *matHeaderRowDef="columns; stick: false"></mat-header-row>
-      <mat-row
+      <!-- <mat-row
         *matRowDef="let row; columns: columns"
         mat-Ripple
         class="savestate-row"
@@ -274,7 +274,8 @@
         [@detailExpand]="row.element == expandedRow ? 'expanded' : 'collapsed'"
         style="overflow: hidden"
         class="detail-row"
-      ></mat-row>
+      ></mat-row> -->
+      <mat-row *matRowDef="let row; columns: columns;" matRipple class="savestate-row" [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl"></mat-row>
       <mat-paginator
         [length]="length"
         [pageSize]="page_size"
@@ -282,4 +283,11 @@
       </mat-paginator>
     </mat-table>
   </div>
+
+  <ng-template #tpl let-row>
+    <div class="mat-row detail-row" [@detailExpand] style="overflow: hidden">
+      {{ row.description }}
+    </div>
+  </ng-template>
+
 </div>

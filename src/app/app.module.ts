@@ -34,9 +34,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { FileUploadModule } from 'ng2-file-upload';
 
+import { CdkDetailRowDirective } from './pages/search/cdk-detail-row.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
+    CdkDetailRowDirective,
     HomeComponent,
     ProfileComponent,
     SearchComponent,

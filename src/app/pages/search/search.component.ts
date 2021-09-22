@@ -34,7 +34,7 @@ export class SearchComponent implements AfterViewInit {
   @ViewChild(MatSort, { static: false }) sort: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
-  isExpansionDetailRow = (i: number, row: Object) => row.hasOwnProperty('detailRow');
+  isExpansionDetailRow = (index, row) => row.hasOwnProperty('detailRow');
   //expandedRow: any;
 
   character_filter = "";
@@ -80,7 +80,6 @@ export class SearchComponent implements AfterViewInit {
   page_event: PageEvent;
   data: any;
   default_search: boolean;
-  //isExpansionDetailRow = (index, row) => row.hasOwnProperty('detailRow');
   expandedRow: any;
 
   temp_data_source = [
