@@ -285,8 +285,7 @@
   </div>
 
   <ng-template #tpl let-row>
-    <div class="mat-row detail-row" [@detailExpand] style="overflow: hidden">
-      {{ row.description.S || row.description }}
+    <div class="mat-row detail-row" [@detailExpand] style="overflow: hidden" [innerText]="row.description.S || row.description">
     </div>
   </ng-template>
 
