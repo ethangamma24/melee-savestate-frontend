@@ -2,29 +2,42 @@
 <br />
 <div class="login-card">
   <mat-card>
-    <mat-card-title>
-      Login
-    </mat-card-title>
+    <mat-card-title> Login </mat-card-title>
     <mat-card-content>
       <div [formGroup]="login_form">
         <mat-form-field>
-          <input matNativeControl placeholder="Email" formControlName="email">
-          <mat-error *ngIf="login_form.controls.email.invalid">{{ getEmailErrorMessage() }}</mat-error>
+          <input matNativeControl placeholder="Email" formControlName="email" />
+          <mat-error *ngIf="login_form.controls.email.invalid">{{
+            getEmailErrorMessage()
+          }}</mat-error>
         </mat-form-field>
         <br />
         <mat-form-field>
-          <input matNativeControl type="password" placeholder="Password" formControlName="password">
-          <mat-error *ngIf="login_form.controls.password.invalid">{{ getPasswordErrorMessage() }}</mat-error>
+          <input
+            matNativeControl
+            type="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <mat-error *ngIf="login_form.controls.password.invalid">{{
+            getPasswordErrorMessage()
+          }}</mat-error>
         </mat-form-field>
       </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="accent" (click)="login()">SUBMIT</button>
-      <button mat-raised-button color="primary" routerLink="/register">CREATE AN ACCOUNT</button>
+      <button mat-raised-button color="primary" routerLink="/register">
+        CREATE AN ACCOUNT
+      </button>
     </mat-card-actions>
     <div class="email-div" *ngIf="email_div || password_div">
       <br />
-      <center><h4 color="red">Your email and/or password are incorrect. Please try again.</h4></center>
+      <center>
+        <h4 color="red">
+          Your email and/or password are incorrect. Please try again.
+        </h4>
+      </center>
     </div>
     <div class="email-div" *ngIf="success">
       <br />

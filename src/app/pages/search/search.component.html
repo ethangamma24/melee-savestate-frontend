@@ -20,13 +20,17 @@
           <img class="stock-icon" src="../../assets/Sheik.png" />Sheik
         </mat-option>
         <mat-option value="Captain Falcon">
-          <img class="stock-icon" src="../../assets/Captain Falcon.png" />Captain Falcon
+          <img
+            class="stock-icon"
+            src="../../assets/Captain Falcon.png"
+          />Captain Falcon
         </mat-option>
         <mat-option value="Peach">
           <img class="stock-icon" src="../../assets/Peach.png" />Peach
         </mat-option>
         <mat-option value="Ice Climbers">
-          <img class="stock-icon" src="../../assets/Ice Climbers.png" />Ice Climbers
+          <img class="stock-icon" src="../../assets/Ice Climbers.png" />Ice
+          Climbers
         </mat-option>
         <mat-option value="Pikachu">
           <img class="stock-icon" src="../../assets/Pikachu.png" />Pikachu
@@ -35,7 +39,8 @@
           <img class="stock-icon" src="../../assets/Samus.png" />Samus
         </mat-option>
         <mat-option value="Dr. Mario">
-          <img class="stock-icon" src="../../assets/Doctor Mario.png" />Doctor Mario
+          <img class="stock-icon" src="../../assets/Doctor Mario.png" />Doctor
+          Mario
         </mat-option>
         <mat-option value="Yoshi">
           <img class="stock-icon" src="../../assets/Yoshi.png" />Yoshi
@@ -53,13 +58,15 @@
           <img class="stock-icon" src="../../assets/Young Link.png" />Young Link
         </mat-option>
         <mat-option value="Donkey Kong">
-          <img class="stock-icon" src="../../assets/Donkey Kong.png" />Donkey Kong
+          <img class="stock-icon" src="../../assets/Donkey Kong.png" />Donkey
+          Kong
         </mat-option>
         <mat-option value="Link">
           <img class="stock-icon" src="../../assets/Link.png" />Link
         </mat-option>
         <mat-option value="Game & Watch">
-          <img class="stock-icon" src="../../assets/Game & Watch.png" />Game & Watch
+          <img class="stock-icon" src="../../assets/Game & Watch.png" />Game &
+          Watch
         </mat-option>
         <mat-option value="Roy">
           <img class="stock-icon" src="../../assets/Roy.png" />Roy
@@ -104,13 +111,17 @@
           <img class="stock-icon" src="../../assets/Sheik.png" />Sheik
         </mat-option>
         <mat-option value="Captain Falcon">
-          <img class="stock-icon" src="../../assets/Captain Falcon.png" />Captain Falcon
+          <img
+            class="stock-icon"
+            src="../../assets/Captain Falcon.png"
+          />Captain Falcon
         </mat-option>
         <mat-option value="Peach">
           <img class="stock-icon" src="../../assets/Peach.png" />Peach
         </mat-option>
         <mat-option value="Ice Climbers">
-          <img class="stock-icon" src="../../assets/Ice Climbers.png" />Ice Climbers
+          <img class="stock-icon" src="../../assets/Ice Climbers.png" />Ice
+          Climbers
         </mat-option>
         <mat-option value="Pikachu">
           <img class="stock-icon" src="../../assets/Pikachu.png" />Pikachu
@@ -119,7 +130,8 @@
           <img class="stock-icon" src="../../assets/Samus.png" />Samus
         </mat-option>
         <mat-option value="Dr. Mario">
-          <img class="stock-icon" src="../../assets/Doctor Mario.png" />Doctor Mario
+          <img class="stock-icon" src="../../assets/Doctor Mario.png" />Doctor
+          Mario
         </mat-option>
         <mat-option value="Yoshi">
           <img class="stock-icon" src="../../assets/Yoshi.png" />Yoshi
@@ -137,13 +149,15 @@
           <img class="stock-icon" src="../../assets/Young Link.png" />Young Link
         </mat-option>
         <mat-option value="Donkey Kong">
-          <img class="stock-icon" src="../../assets/Donkey Kong.png" />Donkey Kong
+          <img class="stock-icon" src="../../assets/Donkey Kong.png" />Donkey
+          Kong
         </mat-option>
         <mat-option value="Link">
           <img class="stock-icon" src="../../assets/Link.png" />Link
         </mat-option>
         <mat-option value="Game & Watch">
-          <img class="stock-icon" src="../../assets/Game & Watch.png" />Game & Watch
+          <img class="stock-icon" src="../../assets/Game & Watch.png" />Game &
+          Watch
         </mat-option>
         <mat-option value="Roy">
           <img class="stock-icon" src="../../assets/Roy.png" />Roy
@@ -183,13 +197,17 @@
     <mat-form-field class="dropdown">
       <mat-label>Training Type</mat-label>
       <mat-select [formControl]="training_type">
-        <mat-option *ngFor="let type of training_type_list" [value]="type">{{ type }}</mat-option>
+        <mat-option *ngFor="let type of training_type_list" [value]="type">{{
+          type
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="last-dropdown">
       <mat-label>Training Mode Version</mat-label>
       <mat-select [formControl]="version">
-        <mat-option *ngFor="let version of version_list" [value]="version">{{ version }}</mat-option>
+        <mat-option *ngFor="let version of version_list" [value]="version">{{
+          version
+        }}</mat-option>
       </mat-select>
     </mat-form-field>
     <button mat-stroked-button color="accent" (click)="search()">
@@ -204,7 +222,8 @@
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
       </mat-form-field>
     </div> -->
-    <mat-table #table
+    <mat-table
+      #table
       [dataSource]="data_source"
       matSort
       class="mat-elevation-z8"
@@ -213,41 +232,83 @@
       matSortDisableClear="true"
     >
       <ng-container matColumnDef="username">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>User</mat-header-cell>
-        <mat-cell *matCellDef="let row"><a routerLink="/profile/{{ row.username.S || row.username }}">{{ row.username.S || row.username }}</a></mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >User</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"
+          ><a routerLink="/profile/{{ row.username.S || row.username }}">{{
+            row.username.S || row.username
+          }}</a></mat-cell
+        >
       </ng-container>
       <ng-container matColumnDef="file_name">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.title.S || row.title }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{
+          row.title.S || row.title
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="character">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Character</mat-header-cell>
-        <mat-cell *matCellDef="let row"><img class="stock-icon-table" src='../../assets/{{ row.character.S || row.character }}.png'></mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Character</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"
+          ><img
+            class="stock-icon-table"
+            src="../../assets/{{ row.character.S || row.character }}.png"
+        /></mat-cell>
       </ng-container>
       <ng-container matColumnDef="opponent">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Opponent</mat-header-cell>
-        <mat-cell *matCellDef="let row"><img class="stock-icon-table" src='../../assets/{{ row.opponent.S || row.opponent }}.png'></mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Opponent</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"
+          ><img
+            class="stock-icon-table"
+            src="../../assets/{{ row.opponent.S || row.opponent }}.png"
+        /></mat-cell>
       </ng-container>
       <ng-container matColumnDef="stage">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Stage</mat-header-cell>
-        <mat-cell *matCellDef="let row"><img class="stage-pic" src='../../assets/{{ row.stage.S || row.stage }}.jpg'></mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Stage</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"
+          ><img
+            class="stage-pic"
+            src="../../assets/{{ row.stage.S || row.stage }}.jpg"
+        /></mat-cell>
       </ng-container>
       <ng-container matColumnDef="training_type">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.training_type.S || row.training_type }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Type</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{
+          row.training_type.S || row.training_type
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="version">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Version</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.version.S || row.version }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Version</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{
+          row.version.S || row.version
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="downloads">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Downloads</mat-header-cell>
-        <mat-cell *matCellDef="let row">{{ row.downloads.N || row.downloads }}</mat-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Downloads</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{
+          row.downloads.N || row.downloads
+        }}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="download-button">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <button mat-stroked-button color="accent" (click)="downloadFile(row)"><mat-icon>download</mat-icon></button>
+          <button mat-stroked-button color="accent" (click)="downloadFile(row)">
+            <mat-icon>download</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
 
@@ -275,18 +336,28 @@
         style="overflow: hidden"
         class="detail-row"
       ></mat-row> -->
-      <mat-row *matRowDef="let row; columns: columns;" matRipple class="savestate-row" [cdkDetailRow]="row" [cdkDetailRowTpl]="tpl"></mat-row>
-      <mat-paginator
-        [length]="length"
-        [pageSize]="page_size"
-        [pageSizeOptions]="page_size_options">
-      </mat-paginator>
+      <mat-row
+        *matRowDef="let row; columns: columns"
+        matRipple
+        class="savestate-row"
+        [cdkDetailRow]="row"
+        [cdkDetailRowTpl]="tpl"
+      ></mat-row>
     </mat-table>
+    <mat-paginator
+      [length]="length"
+      [pageSize]="page_size"
+      [pageSizeOptions]="page_size_options"
+    >
+    </mat-paginator>
   </div>
 
   <ng-template #tpl let-row>
-    <div class="mat-row detail-row" [@detailExpand] style="overflow: hidden" [innerText]="row.description.S || row.description">
-    </div>
+    <div
+      class="mat-row detail-row"
+      [@detailExpand]
+      style="overflow: hidden"
+      [innerText]="row.description.S || row.description"
+    ></div>
   </ng-template>
-
 </div>

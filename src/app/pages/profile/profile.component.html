@@ -13,67 +13,99 @@
     <!-- </mat-card-actions> -->
   </mat-card>
 </div>
-  <br />
-  <br />
-  <center><h3>Uploads</h3></center>
-  <br />
-  <div class="table-container"><div style="display: inline-block; width: 80%">
-  <mat-table
-    [dataSource]="data_source"
-    matSort
-    class="mat-elevation-z8"
-    matSortActive="downloads"
-    matSortDirection="desc"
-    matSortDisableClear="true"
-  >
-    <ng-container matColumnDef="training_name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="character">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Character</mat-header-cell>
-      <mat-cell *matCellDef="let row"><img class="stock-icon" src='../../assets/{{ row.character }}.png'></mat-cell>
-      <!-- <mat-cell *matCellDef="let row">{{ row.character.S }}</mat-cell> -->
-    </ng-container>
-    <ng-container matColumnDef="opponent">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Opponent</mat-header-cell>
-      <mat-cell *matCellDef="let row"><img class="stock-icon" src='../../assets/{{ row.opponent }}.png'></mat-cell>
-      <!-- <mat-cell *matCellDef="let row">{{ row.opponent.S }}</mat-cell> -->
-    </ng-container>
-    <ng-container matColumnDef="stage">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Stage</mat-header-cell>
-      <mat-cell *matCellDef="let row"><img class="stage-pic" src='../../assets/{{ row.stage }}.jpg'></mat-cell>
-      <!-- <mat-cell *matCellDef="let row">{{ row.stage.S }}</mat-cell> -->
-    </ng-container>
-    <ng-container matColumnDef="training_type">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Type</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.training_type }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="version">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Version</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.version }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="downloads">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Downloads</mat-header-cell>
-      <mat-cell *matCellDef="let row">{{ row.downloads }}</mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="download-button">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <button mat-stroked-button color="accent" (click)="downloadFile(row)"><mat-icon>download</mat-icon></button>
-      </mat-cell>
-    </ng-container>
+<br />
+<br />
+<center><h3>Uploads</h3></center>
+<br />
+<div class="table-container">
+  <div style="display: inline-block; width: 80%">
+    <mat-table
+      [dataSource]="data_source"
+      matSort
+      class="mat-elevation-z8"
+      matSortActive="downloads"
+      matSortDirection="desc"
+      matSortDisableClear="true"
+    >
+      <ng-container matColumnDef="training_name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{ row.title }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="character">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Character</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"
+          ><img class="stock-icon" src="../../assets/{{ row.character }}.png"
+        /></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="opponent">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Opponent</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"
+          ><img class="stock-icon" src="../../assets/{{ row.opponent }}.png"
+        /></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="stage">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Stage</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row"
+          ><img class="stage-pic" src="../../assets/{{ row.stage }}.jpg"
+        /></mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="training_type">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Type</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{ row.training_type }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="version">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Version</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{ row.version }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="downloads">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Downloads</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">{{ row.downloads }}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="download-button">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-stroked-button color="accent" (click)="downloadFile(row)">
+            <mat-icon>download</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
 
-    <mat-header-row *matHeaderRowDef="columns; stick: false"></mat-header-row>
-    <mat-row
-      *matRowDef="let row; columns: columns"
-      mat-Ripple
-      class="savestate-row"
-    ></mat-row>
+      <mat-header-row *matHeaderRowDef="columns; stick: false"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: columns"
+        matRipple
+        class="savestate-row"
+        [cdkDetailRow]="row"
+        [cdkDetailRowTpl]="tpl"
+      ></mat-row>
+    </mat-table>
     <mat-paginator
       [length]="length"
       [pageSize]="page_size"
-      [pageSizeOptions]="page_size_options">
+      [pageSizeOptions]="page_size_options"
+    >
     </mat-paginator>
-  </mat-table>
-</div></div>
+  </div>
+  <ng-template #tpl let-row>
+    <div
+      class="mat-row detail-row"
+      [@detailExpand]
+      style="overflow: hidden"
+      [innerText]="row.description.S || row.description"
+    ></div>
+  </ng-template>
+</div>

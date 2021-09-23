@@ -18,12 +18,12 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'savestate-details/:id', component: SavestateDetailsComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'upload', component: UploadSavestateComponent }
+  { path: 'upload', component: UploadSavestateComponent },
 ]; // sets up routes constant where you define your routes
 
 // configures NgModule imports and exports
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

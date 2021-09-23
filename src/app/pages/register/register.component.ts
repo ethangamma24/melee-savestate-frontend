@@ -1,7 +1,17 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 import { ConfirmedValidator } from './confirmed.validator';
@@ -11,19 +21,25 @@ import { AccountService } from '../../services/account.service';
 import { User } from '../../models/user';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
     const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
   }
 }
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-
   user: User;
 
   constructor(
@@ -31,16 +47,26 @@ export class RegisterComponent {
     public dialog: MatDialog,
     public account_service: AccountService,
     public router: Router
-  ) { }
+  ) {}
 
-  registration_form = this.formBuilder.group({
-    name: ['', Validators.required],
-    username: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-z\d$@$!%*?&].{7,}')]],
-    confirm_password: ['', Validators.required],
-  }, { validator: ConfirmedValidator ('password', 'confirm_password') }
-  )
+  registration_form = this.formBuilder.group(
+    {
+      name: ['', Validators.required],
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(
+            '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[A-Za-zd$@$!%*?&].{7,}'
+          ),
+        ],
+      ],
+      confirm_password: ['', Validators.required],
+    },
+    { validator: ConfirmedValidator('password', 'confirm_password') }
+  );
 
   getNameErrorMessage() {
     if (this.registration_form.controls.name.hasError('required')) {
@@ -59,25 +85,31 @@ export class RegisterComponent {
       return 'You must enter a value';
     }
 
-    return this.registration_form.controls.email.hasError('email') ? 'Not a valid email' : '';
+    return this.registration_form.controls.email.hasError('email')
+      ? 'Not a valid email'
+      : '';
   }
 
   getPasswordErrorMessage() {
     if (this.registration_form.controls.password.hasError('required')) {
       return 'You must enter a value';
     }
-    
   }
 
   getPasswordPatternErrorMessage() {
-    return this.registration_form.controls.password.hasError('pattern') ? 'Password must be at least 8 characters long, contain one uppercase and lowercase letter, and one number.' : '';
+    return this.registration_form.controls.password.hasError('pattern')
+      ? 'Password must be at least 8 characters long, contain one uppercase and lowercase letter, and one number.'
+      : '';
   }
 
   getConfirmationPasswordErrorMessage() {
     if (this.registration_form.controls.confirm_password.hasError('required')) {
       return 'You must enter a value';
     }
-    return this.registration_form.controls.confirm_password != this.registration_form.controls.password ?'The passwords do not match' : '';
+    return this.registration_form.controls.confirm_password !=
+      this.registration_form.controls.password
+      ? 'The passwords do not match'
+      : '';
   }
 
   emailFormControl = new FormControl('', [
@@ -85,36 +117,39 @@ export class RegisterComponent {
     Validators.email,
   ]);
 
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-]);
+  passwordFormControl = new FormControl('', [Validators.required]);
 
   async register() {
-    let username_taken = await this.account_service.usernameTaken(this.registration_form.controls.username.value);
-    let email_taken = await this.account_service.emailTaken(this.registration_form.controls.email.value);
+    let username_taken = await this.account_service.usernameTaken(
+      this.registration_form.controls.username.value
+    );
+    let email_taken = await this.account_service.emailTaken(
+      this.registration_form.controls.email.value
+    );
 
-    if (username_taken.toString() === 'true') { this.openUsernameDialog() }
-    else if (email_taken.toString() === 'true') { this.openEmailDialog() }
-    else {
+    if (username_taken.toString() === 'true') {
+      this.openUsernameDialog();
+    } else if (email_taken.toString() === 'true') {
+      this.openEmailDialog();
+    } else {
       this.user = {
         name: this.registration_form.controls.name.value,
         username: this.registration_form.controls.username.value,
         email: this.registration_form.controls.email.value,
         password: this.registration_form.controls.password.value,
-      }
+      };
       this.account_service.register(this.user);
       this.openConfirmationDialog();
     }
-
   }
 
   openUsernameDialog() {
     const dialogRef = this.dialog.open(UsernameDialog, {
       width: '500px',
-      data: { username: this.registration_form.controls.username.value }
+      data: { username: this.registration_form.controls.username.value },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.registration_form.controls.username.setValue('');
     });
   }
@@ -122,10 +157,10 @@ export class RegisterComponent {
   openEmailDialog() {
     const dialogRef = this.dialog.open(EmailDialog, {
       width: '500px',
-      data: { email: this.registration_form.controls.email.value }
+      data: { email: this.registration_form.controls.email.value },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       this.registration_form.controls.email.setValue('');
     });
   }
@@ -137,7 +172,6 @@ export class RegisterComponent {
   }
 
   matcher = new MyErrorStateMatcher();
-
 }
 
 @Component({
@@ -145,15 +179,14 @@ export class RegisterComponent {
   templateUrl: 'username-dialog.html',
 })
 export class UsernameDialog {
-
   constructor(
     public dialogRef: MatDialogRef<UsernameDialog>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
+    @Inject(MAT_DIALOG_DATA) public data
+  ) {}
 
   close(): void {
     this.dialogRef.close();
   }
-
 }
 
 @Component({
@@ -161,15 +194,14 @@ export class UsernameDialog {
   templateUrl: 'email-dialog.html',
 })
 export class EmailDialog {
-
   constructor(
     public dialogRef: MatDialogRef<UsernameDialog>,
-    @Inject(MAT_DIALOG_DATA) public data) {}
+    @Inject(MAT_DIALOG_DATA) public data
+  ) {}
 
   close(): void {
     this.dialogRef.close();
   }
-
 }
 
 @Component({
@@ -177,15 +209,14 @@ export class EmailDialog {
   templateUrl: 'confirmation-dialog.html',
 })
 export class ConfirmationDialog {
-
   constructor(
     public dialogRef: MatDialogRef<ConfirmationDialog>,
     @Inject(MAT_DIALOG_DATA) public data,
-    public router: Router) {}
+    public router: Router
+  ) {}
 
   closeConfirmation(): void {
     this.router.navigate(['/']);
     this.dialogRef.close();
   }
-
 }

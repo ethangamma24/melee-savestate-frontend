@@ -1,7 +1,14 @@
-import {Directive, HostBinding, HostListener, Input, TemplateRef, ViewContainerRef} from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+  HostListener,
+  Input,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 
 @Directive({
-  selector: '[cdkDetailRow]'
+  selector: '[cdkDetailRow]',
 })
 export class CdkDetailRowDirective {
   private row: any;
@@ -17,7 +24,6 @@ export class CdkDetailRowDirective {
   set cdkDetailRow(value: any) {
     if (value !== this.row) {
       this.row = value;
-      // this.render();
     }
   }
 
@@ -25,15 +31,13 @@ export class CdkDetailRowDirective {
   set template(value: TemplateRef<any>) {
     if (value !== this.tRef) {
       this.tRef = value;
-      // this.render();
     }
   }
 
-  constructor(public vcRef: ViewContainerRef) { }
+  constructor(public vcRef: ViewContainerRef) {}
 
   @HostListener('click')
   onClick(): void {
-    console.log('clicked')
     this.toggle();
   }
 

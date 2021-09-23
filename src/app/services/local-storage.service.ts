@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LocalStorageService {
   public username$: BehaviorSubject<string>;
@@ -12,18 +12,18 @@ export class LocalStorageService {
   public token$: BehaviorSubject<string>;
   public email$: BehaviorSubject<string>;
 
-  constructor(
-      private router: Router,
-      private http: HttpClient
-  ) {
-      this.username$ = new BehaviorSubject(localStorage.getItem('user'));
-      this.email$ = new BehaviorSubject(localStorage.getItem('email'));
-      this.token$ = new BehaviorSubject(localStorage.getItem('token'));
-      if (localStorage.getItem('user') !== 'null' && localStorage.getItem('user') !== null) {
-        this.logged_in$ = new BehaviorSubject(true);
-      } else {
-        this.logged_in$ = new BehaviorSubject(false);
-      }
+  constructor(private router: Router, private http: HttpClient) {
+    this.username$ = new BehaviorSubject(localStorage.getItem('user'));
+    this.email$ = new BehaviorSubject(localStorage.getItem('email'));
+    this.token$ = new BehaviorSubject(localStorage.getItem('token'));
+    if (
+      localStorage.getItem('user') !== 'null' &&
+      localStorage.getItem('user') !== null
+    ) {
+      this.logged_in$ = new BehaviorSubject(true);
+    } else {
+      this.logged_in$ = new BehaviorSubject(false);
+    }
   }
 
   public getUsername(): Observable<string> {

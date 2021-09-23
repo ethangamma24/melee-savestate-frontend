@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-// import { BehaviorSubject, Observable } from 'rxjs';
-// import { map } from 'rxjs/operators';
 
 import { LocalStorageService } from '../services/local-storage.service';
 
@@ -20,14 +18,24 @@ export class AccountService {
     private http: HttpClient,
     private local_storage_service: LocalStorageService
   ) {
-    this.local_storage_service.getToken().subscribe( (token) => { this.token = token });
-    this.local_storage_service.getEmail().subscribe( (email) => { this.email = email });
+    this.local_storage_service.getToken().subscribe((token) => {
+      this.token = token;
+    });
+    this.local_storage_service.getEmail().subscribe((email) => {
+      this.email = email;
+    });
   }
 
   async checkToken() {
     let user: any;
-    if(this.token != 'null' && this.token != null) {
-      user = await this.http.post(`/api/SaveState-Check-Token`, { "token": this.token, "email": this.email }, { responseType: 'text' }).toPromise();
+    if (this.token != 'null' && this.token != null) {
+      user = await this.http
+        .post(
+          `/api/SaveState-Check-Token`,
+          { token: this.token, email: this.email },
+          { responseType: 'text' }
+        )
+        .toPromise();
       this.local_storage_service.setUsername(user);
       return user;
     } else {
@@ -40,13 +48,23 @@ export class AccountService {
     let login_successful: any;
     let user: any;
     let body = {
-      "email": email,
-      "password": password
-    }
-    await this.http.post(`/api/login`, body).toPromise().then( (res) => { login_successful = res; });
+      email: email,
+      password: password,
+    };
+    await this.http
+      .post(`/api/login`, body)
+      .toPromise()
+      .then((res) => {
+        login_successful = res;
+      });
 
     if (login_successful) {
-      await this.http.post(`/api/SaveState-Get-User`, body).toPromise().then( (res) => { user = res; });
+      await this.http
+        .post(`/api/SaveState-Get-User`, body)
+        .toPromise()
+        .then((res) => {
+          user = res;
+        });
       this.local_storage_service.setUsername(user.username.S);
       this.local_storage_service.setToken(user.token.S);
       this.local_storage_service.setEmail(user.email.S);
@@ -58,26 +76,27 @@ export class AccountService {
   }
 
   logout() {
-      this.local_storage_service.setUsername('null');
-      this.local_storage_service.setToken('null');
-      this.local_storage_service.setEmail('null');
-      this.local_storage_service.setLoggedIn(false);
-      this.router.navigate(['/login']);
+    this.local_storage_service.setUsername('null');
+    this.local_storage_service.setToken('null');
+    this.local_storage_service.setEmail('null');
+    this.local_storage_service.setLoggedIn(false);
+    this.router.navigate(['/login']);
   }
 
   async register(user: User) {
-      console.log(user);
-      return await this.http.post(`/api/register`, user).toPromise();
+    return await this.http.post(`/api/register`, user).toPromise();
   }
 
   async usernameTaken(username: string) {
-      let body = { "username": username }
-      return await this.http.post(`/api/username-exists`, body).toPromise();
+    let body = { username: username };
+    return await this.http.post(`/api/username-exists`, body).toPromise();
   }
 
   async emailTaken(email: string) {
-      let body = { "email": email }
-      return await this.http.post(`/api/SaveState-Email-Exists`, body).toPromise();
+    let body = { email: email };
+    return await this.http
+      .post(`/api/SaveState-Email-Exists`, body)
+      .toPromise();
   }
 
   // getAll() {

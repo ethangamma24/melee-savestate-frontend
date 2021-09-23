@@ -70,12 +70,10 @@ import { CdkDetailRowDirective } from './pages/search/cdk-detail-row.directive';
     MatToolbarModule,
     ReactiveFormsModule,
     FileUploadModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
-  schemas: [
-    NO_ERRORS_SCHEMA
-  ],
-bootstrap: [AppComponent]
+  schemas: [NO_ERRORS_SCHEMA],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

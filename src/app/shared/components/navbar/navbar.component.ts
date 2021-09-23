@@ -9,10 +9,9 @@ import { LocalStorageService } from '../../../services/local-storage.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
   mobileQuery: MediaQueryList;
   logged_in: boolean;
   username: any;
@@ -28,8 +27,12 @@ export class NavbarComponent implements OnInit {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
-    this.local_storage_service.getLoggedIn().subscribe( (logged_in) => { this.logged_in = logged_in; });
-    this.local_storage_service.getUsername().subscribe( (username) => { this.username = username; });
+    this.local_storage_service.getLoggedIn().subscribe((logged_in) => {
+      this.logged_in = logged_in;
+    });
+    this.local_storage_service.getUsername().subscribe((username) => {
+      this.username = username;
+    });
   }
 
   ngOnInit(): void {
@@ -40,5 +43,4 @@ export class NavbarComponent implements OnInit {
     this.account_service.logout();
     this.logged_in = false;
   }
-
 }

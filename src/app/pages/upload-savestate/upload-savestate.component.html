@@ -9,10 +9,20 @@
       Upload your Uncle Punch .gci file and add the relevant information.
     </mat-card-subtitle>
     <mat-card-content>
-      <input type="file" class="file-upload" (change)="fileUploaded($event)" #fileUpload>
+      <input
+        type="file"
+        class="file-upload"
+        (change)="fileUploaded($event)"
+        #fileUpload
+      />
       <div class="select-file">
         {{ file_name || "No file uploaded yet." }}
-        <button mat-mini-fab color="accent" class="upload-button" (click)="fileUpload.click()">
+        <button
+          mat-mini-fab
+          color="accent"
+          class="upload-button"
+          (click)="fileUpload.click()"
+        >
           <mat-icon>attach_file</mat-icon>
         </button>
       </div>
@@ -20,7 +30,11 @@
         <br />
         <mat-form-field class="dropdown">
           <mat-label>Title</mat-label>
-          <input matInput placeholder="Ex: Stomp on Fox at 50%" [(ngModel)]="title">
+          <input
+            matInput
+            placeholder="Ex: Stomp on Fox at 50%"
+            [(ngModel)]="title"
+          />
         </mat-form-field>
         <mat-form-field class="dropdown">
           <mat-label>Character</mat-label>
@@ -35,19 +49,26 @@
               <img class="stock-icon" src="../../assets/Marth.png" />Marth
             </mat-option>
             <mat-option value="Jigglypuff">
-              <img class="stock-icon" src="../../assets/Jigglypuff.png" />Jigglypuff
+              <img
+                class="stock-icon"
+                src="../../assets/Jigglypuff.png"
+              />Jigglypuff
             </mat-option>
             <mat-option value="Sheik">
               <img class="stock-icon" src="../../assets/Sheik.png" />Sheik
             </mat-option>
             <mat-option value="Captain Falcon">
-              <img class="stock-icon" src="../../assets/Captain Falcon.png" />Captain Falcon
+              <img
+                class="stock-icon"
+                src="../../assets/Captain Falcon.png"
+              />Captain Falcon
             </mat-option>
             <mat-option value="Peach">
               <img class="stock-icon" src="../../assets/Peach.png" />Peach
             </mat-option>
             <mat-option value="Ice Climbers">
-              <img class="stock-icon" src="../../assets/Ice Climbers.png" />Ice Climbers
+              <img class="stock-icon" src="../../assets/Ice Climbers.png" />Ice
+              Climbers
             </mat-option>
             <mat-option value="Pikachu">
               <img class="stock-icon" src="../../assets/Pikachu.png" />Pikachu
@@ -56,7 +77,10 @@
               <img class="stock-icon" src="../../assets/Samus.png" />Samus
             </mat-option>
             <mat-option value="Dr. Mario">
-              <img class="stock-icon" src="../../assets/Doctor Mario.png" />Doctor Mario
+              <img
+                class="stock-icon"
+                src="../../assets/Doctor Mario.png"
+              />Doctor Mario
             </mat-option>
             <mat-option value="Yoshi">
               <img class="stock-icon" src="../../assets/Yoshi.png" />Yoshi
@@ -65,22 +89,30 @@
               <img class="stock-icon" src="../../assets/Luigi.png" />Luigi
             </mat-option>
             <mat-option value="Ganondorf">
-              <img class="stock-icon" src="../../assets/Ganondorf.png" />Ganondorf
+              <img
+                class="stock-icon"
+                src="../../assets/Ganondorf.png"
+              />Ganondorf
             </mat-option>
             <mat-option value="Mario">
               <img class="stock-icon" src="../../assets/Mario.png" />Mario
             </mat-option>
             <mat-option value="Young Link">
-              <img class="stock-icon" src="../../assets/Young Link.png" />Young Link
+              <img class="stock-icon" src="../../assets/Young Link.png" />Young
+              Link
             </mat-option>
             <mat-option value="Donkey Kong">
-              <img class="stock-icon" src="../../assets/Donkey Kong.png" />Donkey Kong
+              <img
+                class="stock-icon"
+                src="../../assets/Donkey Kong.png"
+              />Donkey Kong
             </mat-option>
             <mat-option value="Link">
               <img class="stock-icon" src="../../assets/Link.png" />Link
             </mat-option>
             <mat-option value="Game & Watch">
-              <img class="stock-icon" src="../../assets/Game & Watch.png" />Game & Watch
+              <img class="stock-icon" src="../../assets/Game & Watch.png" />Game
+              & Watch
             </mat-option>
             <mat-option value="Roy">
               <img class="stock-icon" src="../../assets/Roy.png" />Roy
@@ -118,19 +150,26 @@
               <img class="stock-icon" src="../../assets/Marth.png" />Marth
             </mat-option>
             <mat-option value="Jigglypuff">
-              <img class="stock-icon" src="../../assets/Jigglypuff.png" />Jigglypuff
+              <img
+                class="stock-icon"
+                src="../../assets/Jigglypuff.png"
+              />Jigglypuff
             </mat-option>
             <mat-option value="Sheik">
               <img class="stock-icon" src="../../assets/Sheik.png" />Sheik
             </mat-option>
             <mat-option value="Captain Falcon">
-              <img class="stock-icon" src="../../assets/Captain Falcon.png" />Captain Falcon
+              <img
+                class="stock-icon"
+                src="../../assets/Captain Falcon.png"
+              />Captain Falcon
             </mat-option>
             <mat-option value="Peach">
               <img class="stock-icon" src="../../assets/Peach.png" />Peach
             </mat-option>
             <mat-option value="Ice Climbers">
-              <img class="stock-icon" src="../../assets/Ice Climbers.png" />Ice Climbers
+              <img class="stock-icon" src="../../assets/Ice Climbers.png" />Ice
+              Climbers
             </mat-option>
             <mat-option value="Pikachu">
               <img class="stock-icon" src="../../assets/Pikachu.png" />Pikachu
@@ -139,7 +178,10 @@
               <img class="stock-icon" src="../../assets/Samus.png" />Samus
             </mat-option>
             <mat-option value="Dr. Mario">
-              <img class="stock-icon" src="../../assets/Doctor Mario.png" />Doctor Mario
+              <img
+                class="stock-icon"
+                src="../../assets/Doctor Mario.png"
+              />Doctor Mario
             </mat-option>
             <mat-option value="Yoshi">
               <img class="stock-icon" src="../../assets/Yoshi.png" />Yoshi
@@ -148,22 +190,30 @@
               <img class="stock-icon" src="../../assets/Luigi.png" />Luigi
             </mat-option>
             <mat-option value="Ganondorf">
-              <img class="stock-icon" src="../../assets/Ganondorf.png" />Ganondorf
+              <img
+                class="stock-icon"
+                src="../../assets/Ganondorf.png"
+              />Ganondorf
             </mat-option>
             <mat-option value="Mario">
               <img class="stock-icon" src="../../assets/Mario.png" />Mario
             </mat-option>
             <mat-option value="Young Link">
-              <img class="stock-icon" src="../../assets/Young Link.png" />Young Link
+              <img class="stock-icon" src="../../assets/Young Link.png" />Young
+              Link
             </mat-option>
             <mat-option value="Donkey Kong">
-              <img class="stock-icon" src="../../assets/Donkey Kong.png" />Donkey Kong
+              <img
+                class="stock-icon"
+                src="../../assets/Donkey Kong.png"
+              />Donkey Kong
             </mat-option>
             <mat-option value="Link">
               <img class="stock-icon" src="../../assets/Link.png" />Link
             </mat-option>
             <mat-option value="Game & Watch">
-              <img class="stock-icon" src="../../assets/Game & Watch.png" />Game & Watch
+              <img class="stock-icon" src="../../assets/Game & Watch.png" />Game
+              & Watch
             </mat-option>
             <mat-option value="Roy">
               <img class="stock-icon" src="../../assets/Roy.png" />Roy
@@ -185,7 +235,7 @@
             </mat-option>
             <mat-option value="Bowser">
               <img class="stock-icon" src="../../assets/Bowser.png" />Bowser
-          </mat-option>
+            </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="dropdown">
@@ -194,7 +244,9 @@
             <mat-option value="Battlefield">Battlefield</mat-option>
             <mat-option value="Dreamland">Dreamland</mat-option>
             <mat-option value="Final Destination">Final Destination</mat-option>
-            <mat-option value="Fountain of Dreams">Fountain of Dreams</mat-option>
+            <mat-option value="Fountain of Dreams"
+              >Fountain of Dreams</mat-option
+            >
             <mat-option value="Pokemon Stadium">Pokemon Stadium</mat-option>
             <mat-option value="Battlefield">Yoshi's Island</mat-option>
           </mat-select>
@@ -202,24 +254,38 @@
         <mat-form-field class="dropdown">
           <mat-label>Training Type</mat-label>
           <mat-select [formControl]="training_type">
-            <mat-option *ngFor="let type of training_type_list" [value]="type">{{ type }}</mat-option>
+            <mat-option
+              *ngFor="let type of training_type_list"
+              [value]="type"
+              >{{ type }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
         <mat-form-field class="last-dropdown">
           <mat-label>Training Mode Version</mat-label>
           <mat-select [formControl]="version">
-            <mat-option *ngFor="let version of version_list" [value]="version">{{ version }}</mat-option>
+            <mat-option
+              *ngFor="let version of version_list"
+              [value]="version"
+              >{{ version }}</mat-option
+            >
           </mat-select>
         </mat-form-field>
-        <br><br>
-        <mat-form-field class="dropdown" style="width: 50%;">
+        <br /><br />
+        <mat-form-field class="dropdown" style="width: 50%">
           <mat-label>Description</mat-label>
-          <textarea matInput placeholder="Write a description! How to use the savestate, a description of the different slots, etc." [(ngModel)]="description"></textarea>
+          <textarea
+            matInput
+            placeholder="Write a description! How to use the savestate, a description of the different slots, etc."
+            [(ngModel)]="description"
+          ></textarea>
         </mat-form-field>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="accent" (click)="upload()">UPLOAD</button>
+      <button mat-raised-button color="accent" (click)="upload()">
+        UPLOAD
+      </button>
     </mat-card-actions>
     <div class="upload-succeeded" *ngIf="upload_successful">
       <br />
